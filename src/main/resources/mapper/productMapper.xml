@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwua.mall.dao.ProductMapper">
+
+    <select id="queryByCategory" resultType="product">
+        SELECT * FROM product WHERE ID IN (SELECT pid FROM RELATION_1_2_3 WHERE ID1=#{arg0} AND ID2= #{arg1} AND ID3=#{arg02)
+    </select>
+
+    <select id="queryAll" resultType="product">
+        SELECT * FROM product
+    </select>
+
+    <select id="queryCupCake" resultType="product">
+       SELECT * FROM product WHERE ID IN (SELECT pid FROM RELATION_1_2_3 WHERE ID1 = 3)";
+    </select>
+
+    <select id="queryById" resultType="product">
+        SELECT * FROM product WHERE ID = #{id}
+    </select>
+    <select id="querySame" resultType="product">
+
+    </select>
+    <select id="querySearch" resultType="product">
+        SELECT * FROM product WHERE NAME LIKE CONCAT('%',#{search},'%') or comm LIKE CONCAT('%',#{search},'%')
+    </select>
+    <select id="queryLimit" resultType="product">
+        SELECT * FROM product limit #{start},18
+    </select>
+
+    <select id="queryNew" resultType="product">
+                SELECT * FROM (SELECT @rowno:=@rowno+1 as rowno,r.* from (SELECT id, NAME,PRICE,IMGS FROM product ORDER BY TIME DESC) r,(select @rowno:=0) t) temp WHERE temp.rowno &gt;2 AND temp.rowno &lt;=10
+    </select>
+    <select id="query1" resultType="product">
+        SELECT * FROM (SELECT @rowno:=@rowno+1 as rowno,r.* from (SELECT id, NAME,PRICE,IMGS FROM product ORDER BY TIME DESC) r,(select @rowno:=0) t) temp WHERE temp.rowno = 1
+    </select>
+
+    <select id="query2" resultType="product">
+        SELECT * FROM (SELECT @rowno:=@rowno+1 as rowno,r.* from (SELECT id, NAME,PRICE,IMGS FROM product ORDER BY TIME DESC) r,(select @rowno:=0) t) temp WHERE temp.rowno =2
+    </select>
+
+
+
+</mapper>
