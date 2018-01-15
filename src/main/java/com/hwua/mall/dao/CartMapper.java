@@ -13,7 +13,7 @@ public interface CartMapper {
 
     Map queryByCid(String cId,String uId);
 
-    int doUpdate(int count,String cartId);
+    int update(int count,String mid);
 
     int doDelete(String userId, String cid);
 

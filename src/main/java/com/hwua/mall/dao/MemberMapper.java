@@ -15,4 +15,5 @@ public interface MemberMapper {
     int changeInfo(Member member);
 
 
+    int updatePass(String username, String password);
 }

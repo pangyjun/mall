@@ -11,10 +11,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <%@include file="common/head.jsp"%>
+  <%@include file="../../common/head.jsp"%>
 </head>
 <body>
-<%@include file="common/header.jsp"%>
+<%@include file="../../common/header.jsp"%>
 <!--banner-->
 <div class="banner">
   <div class="container">
@@ -154,6 +154,6 @@
 <!--//subscribe-->
 <!--footer-->
 
-<%@include file="common/footer.jsp"%>
+<%@include file="../../common/footer.jsp"%>
 </body>
 </html>

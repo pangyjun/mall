@@ -24,16 +24,27 @@
 <mvc:resources mapping="/static/**" location="static/"/>
 
 
-<!--<mvc:view-controller path="/main" view-name="main"/>-->
+<mvc:view-controller path="/account" view-name="account"/>
+<mvc:view-controller path="/login" view-name="login"/>
+<mvc:view-controller path="/password" view-name="password"/>
 
-<!--&lt;!&ndash;配置拦截器&ndash;&gt;-->
-<!--<mvc:interceptors>-->
-    <!--<mvc:interceptor>-->
-        <!--<mvc:mapping path="/**"/>-->
-        <!--<mvc:exclude-mapping path="/static/**"/>-->
-        <!--<mvc:exclude-mapping path="/login/login"/>-->
-        <!--<ref bean="loginInterception"/>-->
-    <!--</mvc:interceptor>-->
-<!--</mvc:interceptors>-->
+
+  <!--
+&lt;!&ndash;配置拦截器&ndash;&gt;
+<mvc:interceptors>
+    <mvc:interceptor>
+        <mvc:mapping path="/**"/>
+        <mvc:exclude-mapping path="/static/**"/>
+        <mvc:exclude-mapping path="/login"/>
+        <mvc:exclude-mapping path="/index"/>
+        <mvc:exclude-mapping path="/account"/>
+        <mvc:exclude-mapping path="/commom"/>
+        <mvc:exclude-mapping path="/password"/>
+        <mvc:exclude-mapping path="/product"/>
+        <mvc:exclude-mapping path="/single"/>
+
+        <ref bean="loginInterception"/>
+    </mvc:interceptor>
+</mvc:interceptors>-->
 
 </beans>

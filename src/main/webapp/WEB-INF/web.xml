@@ -31,6 +31,7 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
+
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:applicationContext.xml</param-value>
@@ -39,5 +40,15 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+
+    <!--启动直接访问web-inf下的index.jsp-->
+
+    <welcome-file-list>
+        <welcome-file>/WEB-INF/views/index.jsp</welcome-file>
+    </welcome-file-list>
+   <!-- <servlet-mapping>
+        <servlet-name>dispatcherServlet</servlet-name>
+        <url-pattern>/index</url-pattern>
+    </servlet-mapping>-->
 
 </web-app>

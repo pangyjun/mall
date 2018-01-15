@@ -5,7 +5,7 @@
 <mapper namespace="com.hwua.mall.dao.ProductMapper">
 
     <select id="queryByCategory" resultType="product">
-        SELECT * FROM product WHERE ID IN (SELECT pid FROM RELATION_1_2_3 WHERE ID1=#{arg0} AND ID2= #{arg1} AND ID3=#{arg02)
+        SELECT * FROM product WHERE ID IN (SELECT pid FROM RELATION_1_2_3 WHERE  ID1=#{arg0} AND ID2= #{arg1} AND ID3=#{arg2} )
     </select>
 
     <select id="queryAll" resultType="product">
@@ -13,15 +13,13 @@
     </select>
 
     <select id="queryCupCake" resultType="product">
-       SELECT * FROM product WHERE ID IN (SELECT pid FROM RELATION_1_2_3 WHERE ID1 = 3)";
+       SELECT * FROM product WHERE ID IN (SELECT pid FROM RELATION_1_2_3 WHERE ID1 = 3);
     </select>
 
     <select id="queryById" resultType="product">
         SELECT * FROM product WHERE ID = #{id}
     </select>
-    <select id="querySame" resultType="product">
 
-    </select>
     <select id="querySearch" resultType="product">
         SELECT * FROM product WHERE NAME LIKE CONCAT('%',#{search},'%') or comm LIKE CONCAT('%',#{search},'%')
     </select>

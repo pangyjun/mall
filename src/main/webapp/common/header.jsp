@@ -89,7 +89,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <h1 class="navbar-brand"><a  href="index.jsp">Yummy</a></h1>
+                <h1 class="navbar-brand"><a  href="${ctx}/toindex">Yummy</a></h1>
             </div>
             <!--navbar-header-->
             <c:set var="zz" scope="page" value="纸杯蛋糕"/>
@@ -98,11 +98,11 @@
                     <li><a href="history" class="active">主页</a></li>
 
                     <c:forEach items="${applicationScope.cbs}" var="c1">
-                        <c:if test="${c1.name ==pageScope.zz}">
-                            <li><a href="${ctx}/products?id1=${c1.id}">纸杯蛋糕</a></li>
+                        <c:if test="${c1.NAME ==pageScope.zz}">
+                            <li><a href="${ctx}/products?id1=${c1.ID}">纸杯蛋糕</a></li>
                         </c:if>
-                        <c:if test="${c1.name !=pageScope.zz}">
-                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">${c1.name}<b class="caret"></b></a>
+                        <c:if test="${c1.NAME !=pageScope.zz}">
+                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">${c1.NAME}<b class="caret"></b></a>
                                 <ul class="dropdown-menu multi-column columns-4">
                                     <div class="row">
                                             <c:forEach items="${c1.c2}" var="c2" varStatus="ccc">
@@ -110,7 +110,7 @@
                                                 <h4>${c2.name}</h4>
                                                     <ul class="multi-column-dropdown">
                                                         <c:forEach items="${c2.c3}" var="c3" varStatus="counter">
-                                                            <li><a class="list" href="${ctx}/products?id1=${c1.id}&id2=${c2.id}&id3=${c3.id}">${c3.name}</a></li>
+                                                            <li><a class="list" href="${ctx}/products?id1=${c1.ID}&id2=${c2.ID}&id3=${c3.ID}">${c3.NAME}</a></li>
 
 
                                                         </c:forEach>
@@ -145,10 +145,10 @@
                     </form>
                 </div>
             </div>
-            <c:if test="${fn:length(sessionScope.user) <= 0}" >
-                <div class="header-right login">
-                    <a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
-                    <div id="loginBox">
+            <c:if test="${sessionScope.user  == null}" >
+               <div class="header-right login">
+                    <a href="${ctx}/login"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
+                    <%--<div id="loginBox">
                         <form id="loginForm"  >
                             <fieldset id="body">
                                 <fieldset>
@@ -163,36 +163,30 @@
                                 <input type="submit" id="login" value="登陆">
                                 <span id="error"></span>
                             </fieldset>
-                            <p>新用户 ? <a class="sign" href="account.jsp">注册</a> <span><a href="password.jsp">忘记密码？</a></span></p>
+                            <p>新用户 ? <a class="sign" href="${ctx}/account">注册</a> <span><a href="password.jsp">忘记密码？</a></span></p>
                         </form>
-                    </div>
+                    </div>--%>
                 </div>
             </c:if>
-            <c:if test="${fn:length(sessionScope.user) > 0}" >
+            <c:if test="${sessionScope.user != null}" >
                 <div class="header-right login">
-                    <a href="account.jsp" style="color: white; display: block ;height: 52px; padding-top: 17.2px;padding-bottom: 17.2px">${sessionScope.user.username}</a><a
+                    <a href="${ctx}/account" style="color: white; display: block ;height: 52px; padding-top: 17.2px;padding-bottom: 17.2px">${sessionScope.user.username}</a><a
                        href="logoff" style="color: white;">注销</a>
                 </div>
             </c:if>
 
             <div class="header-right cart">
 
-                <c:if test="${fn:length(sessionScope.user) > 0}" >
-                    <a href="cart"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
+                <c:if test="${sessionScope.user != null}" >
+                    <a href="${ctx}/cart"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
                     <div class="cart-box">
 
                         <p><a href="deleteCart" class="simpleCart_empty">清空购物车</a></p>
                         <div class="clearfix"> </div>
                     </div>
                 </c:if>
-                <c:if test="${fn:length(sessionScope.user) <= 0}" >
-                    <a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
-                    <div class="cart-box">
-                        <h4>
-                            <span style="color: red"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;请先 &nbsp;&nbsp; <b>^</b> &nbsp;&nbsp; 登录！ </span>
-                        </h4>
-
-                    </div>
+                <c:if test="${sessionScope.user == null}" >
+                    <a href="${ctx}/cart"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
 
                 </c:if>
 

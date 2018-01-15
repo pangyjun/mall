@@ -20,7 +20,11 @@
     </insert>
 
     <update id="changeInfo" parameterType="member">
-        UPDATE member set USERNAME = #{username} ,PASSWORD = #{password},GENDER = #{gender} , tel = #{tel}
+        UPDATE member set USERNAME = #{username} ,GENDER = #{gender} , tel = #{tel} WHERE id = #{id}
+    </update>
+
+    <update id="updatePass">
+        UPDATE member SET PASSWORD = #{arg1} WHERE USERNAME = #{arg0}
     </update>
 
 

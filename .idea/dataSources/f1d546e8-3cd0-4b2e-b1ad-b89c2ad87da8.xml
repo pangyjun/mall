@@ -185,7 +185,7 @@
     </column>
     <column id="59" parent="16" name="PASSWORD">
       <Position>3</Position>
-      <DataType>varchar(20)|0</DataType>
+      <DataType>varchar(100)|0</DataType>
     </column>
     <column id="60" parent="16" name="GENDER">
       <Position>4</Position>
@@ -209,7 +209,7 @@
       <ColNames>USERNAME</ColNames>
       <UnderlyingIndexName>USERNAME</UnderlyingIndexName>
     </key>
-    <column id="65" parent="17" name="ID">
+    <column id="65" parent="17" name="id">
       <Position>1</Position>
       <DataType>int(6)|0</DataType>
       <NotNull>1</NotNull>
@@ -228,7 +228,7 @@
       <DataType>int(4)|0</DataType>
       <DefaultExpression>&apos;1&apos;</DefaultExpression>
     </column>
-    <column id="69" parent="17" name="TYPE">
+    <column id="69" parent="17" name="type">
       <Position>5</Position>
       <DataType>int(1)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
@@ -241,7 +241,7 @@
     </index>
     <key id="72" parent="17" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>ID</ColNames>
+      <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
     <foreign-key id="73" parent="17" name="fk_product_in_cart_cid">
@@ -250,309 +250,291 @@
       <RefTableName>member</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <foreign-key id="74" parent="17" name="fk_product_in_cart_pid">
-      <ColNames>pid</ColNames>
-      <RefSchemaName>mall</RefSchemaName>
-      <RefTableName>product</RefTableName>
-      <RefColNames>ID</RefColNames>
-    </foreign-key>
-    <column id="75" parent="18" name="ID">
+    <column id="74" parent="18" name="id">
       <Position>1</Position>
       <DataType>int(20)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="76" parent="18" name="pid">
+    <column id="75" parent="18" name="pid">
       <Position>2</Position>
       <DataType>int(4)|0</DataType>
     </column>
-    <column id="77" parent="18" name="COUNT">
+    <column id="76" parent="18" name="count">
       <Position>3</Position>
       <DataType>int(4)|0</DataType>
     </column>
-    <column id="78" parent="18" name="PRICE">
+    <column id="77" parent="18" name="price">
       <Position>4</Position>
       <DataType>int(4)|0</DataType>
     </column>
-    <column id="79" parent="18" name="oid">
+    <column id="78" parent="18" name="oid">
       <Position>5</Position>
       <DataType>int(20)|0</DataType>
     </column>
-    <index id="80" parent="18" name="fk_order_detail_oid">
+    <index id="79" parent="18" name="fk_order_detail_oid">
       <ColNames>oid</ColNames>
     </index>
-    <index id="81" parent="18" name="fk_order_detail_pid">
+    <index id="80" parent="18" name="fk_order_detail_pid">
       <ColNames>pid</ColNames>
     </index>
-    <key id="82" parent="18" name="PRIMARY">
+    <key id="81" parent="18" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>ID</ColNames>
+      <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="83" parent="18" name="fk_order_detail_pid">
-      <ColNames>pid</ColNames>
-      <RefSchemaName>mall</RefSchemaName>
-      <RefTableName>product</RefTableName>
-      <RefColNames>ID</RefColNames>
-    </foreign-key>
-    <foreign-key id="84" parent="18" name="fk_order_detail_oid">
-      <ColNames>oid</ColNames>
-      <RefSchemaName>mall</RefSchemaName>
-      <RefTableName>orders</RefTableName>
-      <RefColNames>ID</RefColNames>
-    </foreign-key>
-    <column id="85" parent="19" name="ID">
+    <column id="82" parent="19" name="id">
       <Position>1</Position>
       <DataType>int(20)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="86" parent="19" name="mid">
+    <column id="83" parent="19" name="mid">
       <Position>2</Position>
       <DataType>int(6)|0</DataType>
     </column>
-    <column id="87" parent="19" name="aid">
+    <column id="84" parent="19" name="aid">
       <Position>3</Position>
       <DataType>int(6)|0</DataType>
     </column>
-    <column id="88" parent="19" name="TOT_MONEY">
+    <column id="85" parent="19" name="tot_money">
       <Position>4</Position>
       <DataType>int(10)|0</DataType>
     </column>
-    <column id="89" parent="19" name="ORDER_TIME">
+    <column id="86" parent="19" name="order_time">
       <Position>5</Position>
       <DataType>date|0</DataType>
     </column>
-    <column id="90" parent="19" name="PAY_TIME">
+    <column id="87" parent="19" name="pay_time">
       <Position>6</Position>
       <DataType>date|0</DataType>
     </column>
-    <column id="91" parent="19" name="CONFIRM_TIME">
+    <column id="88" parent="19" name="confirm_time">
       <Position>7</Position>
       <DataType>date|0</DataType>
     </column>
-    <column id="92" parent="19" name="SEND_TIME">
+    <column id="89" parent="19" name="send_time">
       <Position>8</Position>
       <DataType>date|0</DataType>
     </column>
-    <column id="93" parent="19" name="FLAG">
+    <column id="90" parent="19" name="flag">
       <Position>9</Position>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <index id="94" parent="19" name="fk_orders_mid">
+    <index id="91" parent="19" name="fk_orders_mid">
       <ColNames>mid</ColNames>
     </index>
-    <key id="95" parent="19" name="PRIMARY">
+    <key id="92" parent="19" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>ID</ColNames>
+      <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="96" parent="19" name="fk_orders_mid">
+    <foreign-key id="93" parent="19" name="fk_orders_mid">
       <ColNames>mid</ColNames>
       <RefSchemaName>mall</RefSchemaName>
       <RefTableName>member</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <column id="97" parent="20" name="ID">
+    <column id="94" parent="20" name="id">
       <Position>1</Position>
       <DataType>int(4)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="98" parent="20" name="NAME">
+    <column id="95" parent="20" name="name">
       <Position>2</Position>
       <DataType>varchar(30)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="99" parent="20" name="COMM">
+    <column id="96" parent="20" name="comm">
       <Position>3</Position>
       <DataType>varchar(300)|0</DataType>
     </column>
-    <column id="100" parent="20" name="PRICE">
+    <column id="97" parent="20" name="price">
       <Position>4</Position>
       <DataType>double|0</DataType>
     </column>
-    <column id="101" parent="20" name="STOCK">
+    <column id="98" parent="20" name="stock">
       <Position>5</Position>
       <DataType>int(4)|0</DataType>
     </column>
-    <column id="102" parent="20" name="STATUS">
+    <column id="99" parent="20" name="status">
       <Position>6</Position>
       <DataType>int(1)|0</DataType>
       <DefaultExpression>&apos;1&apos;</DefaultExpression>
     </column>
-    <column id="103" parent="20" name="USEABLE">
+    <column id="100" parent="20" name="useable">
       <Position>7</Position>
       <DataType>int(1)|0</DataType>
       <DefaultExpression>&apos;1&apos;</DefaultExpression>
     </column>
-    <column id="104" parent="20" name="TIME">
+    <column id="101" parent="20" name="time">
       <Position>8</Position>
       <DataType>date|0</DataType>
     </column>
-    <column id="105" parent="20" name="IMGS">
+    <column id="102" parent="20" name="imgs">
       <Position>9</Position>
       <DataType>varchar(150)|0</DataType>
     </column>
-    <column id="106" parent="20" name="PRE_PRICE">
+    <column id="103" parent="20" name="pre_price">
       <Position>10</Position>
       <DataType>double|0</DataType>
     </column>
-    <index id="107" parent="20" name="NAME">
-      <ColNames>NAME</ColNames>
+    <index id="104" parent="20" name="NAME">
+      <ColNames>name</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="108" parent="20" name="PRIMARY">
+    <key id="105" parent="20" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>ID</ColNames>
+      <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="109" parent="20" name="NAME">
-      <ColNames>NAME</ColNames>
+    <key id="106" parent="20" name="NAME">
+      <ColNames>name</ColNames>
       <UnderlyingIndexName>NAME</UnderlyingIndexName>
     </key>
-    <column id="110" parent="21" name="ID1">
+    <column id="107" parent="21" name="ID1">
       <Position>1</Position>
       <DataType>int(4)|0</DataType>
     </column>
-    <column id="111" parent="21" name="ID2">
+    <column id="108" parent="21" name="ID2">
       <Position>2</Position>
       <DataType>int(4)|0</DataType>
     </column>
-    <column id="112" parent="21" name="ID3">
+    <column id="109" parent="21" name="ID3">
       <Position>3</Position>
       <DataType>int(4)|0</DataType>
     </column>
-    <column id="113" parent="21" name="pid">
+    <column id="110" parent="21" name="pid">
       <Position>4</Position>
       <DataType>int(4)|0</DataType>
     </column>
-    <index id="114" parent="21" name="fk_T_RELATION_1_2_3_id1">
+    <index id="111" parent="21" name="fk_T_RELATION_1_2_3_id1">
       <ColNames>ID1</ColNames>
     </index>
-    <index id="115" parent="21" name="fk_T_RELATION_1_2_3_id2">
+    <index id="112" parent="21" name="fk_T_RELATION_1_2_3_id2">
       <ColNames>ID2</ColNames>
     </index>
-    <index id="116" parent="21" name="fk_T_RELATION_1_2_3_id3">
+    <index id="113" parent="21" name="fk_T_RELATION_1_2_3_id3">
       <ColNames>ID3</ColNames>
     </index>
-    <index id="117" parent="21" name="fk_T_RELATION_1_2_3_pid">
+    <index id="114" parent="21" name="fk_T_RELATION_1_2_3_pid">
       <ColNames>pid</ColNames>
     </index>
-    <foreign-key id="118" parent="21" name="fk_T_RELATION_1_2_3_id1">
+    <foreign-key id="115" parent="21" name="fk_T_RELATION_1_2_3_id1">
       <ColNames>ID1</ColNames>
       <RefSchemaName>mall</RefSchemaName>
       <RefTableName>category1</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <foreign-key id="119" parent="21" name="fk_T_RELATION_1_2_3_id2">
+    <foreign-key id="116" parent="21" name="fk_T_RELATION_1_2_3_id2">
       <ColNames>ID2</ColNames>
       <RefSchemaName>mall</RefSchemaName>
       <RefTableName>category2</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <foreign-key id="120" parent="21" name="fk_T_RELATION_1_2_3_id3">
+    <foreign-key id="117" parent="21" name="fk_T_RELATION_1_2_3_id3">
       <ColNames>ID3</ColNames>
       <RefSchemaName>mall</RefSchemaName>
       <RefTableName>category3</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <foreign-key id="121" parent="21" name="fk_T_RELATION_1_2_3_pid">
+    <foreign-key id="118" parent="21" name="fk_T_RELATION_1_2_3_pid">
       <ColNames>pid</ColNames>
       <RefSchemaName>mall</RefSchemaName>
       <RefTableName>product</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <column id="122" parent="22" name="dbid">
+    <column id="119" parent="22" name="dbid">
       <Position>1</Position>
       <DataType>int(12)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="123" parent="22" name="roleName">
+    <column id="120" parent="22" name="roleName">
       <Position>2</Position>
       <DataType>varchar(20)|0</DataType>
     </column>
-    <column id="124" parent="22" name="roleCode">
+    <column id="121" parent="22" name="roleCode">
       <Position>3</Position>
       <DataType>varchar(20)|0</DataType>
     </column>
-    <column id="125" parent="22" name="valid">
+    <column id="122" parent="22" name="valid">
       <Position>4</Position>
       <DataType>varchar(1)|0</DataType>
     </column>
-    <column id="126" parent="22" name="orders">
+    <column id="123" parent="22" name="orders">
       <Position>5</Position>
       <DataType>int(12)|0</DataType>
     </column>
-    <key id="127" parent="22" name="PRIMARY">
+    <key id="124" parent="22" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>dbid</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="128" parent="23" name="dbid">
+    <column id="125" parent="23" name="dbid">
       <Position>1</Position>
       <DataType>int(12)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="129" parent="23" name="roleId">
+    <column id="126" parent="23" name="roleId">
       <Position>2</Position>
       <DataType>int(12)|0</DataType>
     </column>
-    <column id="130" parent="23" name="authId">
+    <column id="127" parent="23" name="authId">
       <Position>3</Position>
       <DataType>int(12)|0</DataType>
     </column>
-    <key id="131" parent="23" name="PRIMARY">
+    <key id="128" parent="23" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>dbid</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="132" parent="24" name="dbid">
+    <column id="129" parent="24" name="dbid">
       <Position>1</Position>
       <DataType>int(12)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="133" parent="24" name="userName">
+    <column id="130" parent="24" name="userName">
       <Position>2</Position>
       <DataType>varchar(20)|0</DataType>
     </column>
-    <column id="134" parent="24" name="password">
+    <column id="131" parent="24" name="password">
       <Position>3</Position>
       <DataType>varchar(36)|0</DataType>
     </column>
-    <column id="135" parent="24" name="realName">
+    <column id="132" parent="24" name="realName">
       <Position>4</Position>
       <DataType>varchar(20)|0</DataType>
     </column>
-    <column id="136" parent="24" name="valid">
+    <column id="133" parent="24" name="valid">
       <Position>5</Position>
       <Comment>1:正常，0：冻结</Comment>
       <DataType>varchar(2)|0</DataType>
     </column>
-    <key id="137" parent="24" name="PRIMARY">
+    <key id="134" parent="24" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>dbid</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="138" parent="25" name="dbid">
+    <column id="135" parent="25" name="dbid">
       <Position>1</Position>
       <DataType>int(12)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="139" parent="25" name="userId">
+    <column id="136" parent="25" name="userId">
       <Position>2</Position>
       <DataType>int(12)|0</DataType>
     </column>
-    <column id="140" parent="25" name="roleId">
+    <column id="137" parent="25" name="roleId">
       <Position>3</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <key id="141" parent="25" name="PRIMARY">
+    <key id="138" parent="25" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>dbid</ColNames>
       <Primary>1</Primary>
