@@ -16,6 +16,7 @@
                 //传递参数
                 success:function (result) {
                     location.reload();
+                    location.reload();
                     },
                 error:function (error) {
                 }
@@ -95,7 +96,7 @@
             <c:set var="zz" scope="page" value="纸杯蛋糕"/>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="history" class="active">主页</a></li>
+                    <li><a href="${ctx}/toindex" class="active">主页</a></li>
 
                     <c:forEach items="${applicationScope.cbs}" var="c1">
                         <c:if test="${c1.NAME ==pageScope.zz}">
@@ -148,24 +149,6 @@
             <c:if test="${sessionScope.user  == null}" >
                <div class="header-right login">
                     <a href="${ctx}/login"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
-                    <%--<div id="loginBox">
-                        <form id="loginForm"  >
-                            <fieldset id="body">
-                                <fieldset>
-                                    <label for="email">电话</label>
-                                    <input type="text" name="tell" id="email" >
-                                </fieldset>
-                                <fieldset>
-                                    <label for="password">密码</label>
-                                    <input type="password" name="password1" id="password"  >
-                                </fieldset>
-
-                                <input type="submit" id="login" value="登陆">
-                                <span id="error"></span>
-                            </fieldset>
-                            <p>新用户 ? <a class="sign" href="${ctx}/account">注册</a> <span><a href="password.jsp">忘记密码？</a></span></p>
-                        </form>
-                    </div>--%>
                 </div>
             </c:if>
             <c:if test="${sessionScope.user != null}" >
@@ -181,7 +164,7 @@
                     <a href="${ctx}/cart"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
                     <div class="cart-box">
 
-                        <p><a href="deleteCart" class="simpleCart_empty">清空购物车</a></p>
+                        <p><a href="${ctx}/deleteCart" class="simpleCart_empty">清空购物车</a></p>
                         <div class="clearfix"> </div>
                     </div>
                 </c:if>

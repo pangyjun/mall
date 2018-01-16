@@ -90,7 +90,7 @@
                                 <br><br><br>
 
                                 <input type="submit" id="login" value="登陆">
-                                <p>新用户 ? <a class="sign" href="${ctx}/account">注册</a> <span><a href="${ctx}/password">忘记密码？</a></span></p>
+                                <p>新用户 ? <a class="sign" href="${ctx}/account">注册</a> <span><a href="${ctx}/toPassword">忘记密码？</a></span></p>
                             </div>
 
 

@@ -28,14 +28,14 @@ public class CartController {
     @Autowired
     private ProductService productService;
 
-   @ResponseBody
-    @RequestMapping(value = "/productAdd" ,produces = "application/json;charset=UTF-8")
-    private String productAdd(HttpServletRequest request,String cid1) throws IOException {
+    @ResponseBody
+    @RequestMapping(value = "/productAdd", produces = "application/json;charset=UTF-8")
+    private String productAdd(HttpServletRequest request, String cid1) throws IOException {
 
         JSONObject jsonObject = new JSONObject();
 
-       Member u = (Member) request.getSession().getAttribute("user");
-       System.out.println(JSON.toJSONString(u));
+        Member u = (Member) request.getSession().getAttribute("user");
+        System.out.println(JSON.toJSONString(u));
         if (u != null) {
             String userId = u.getId().toString();
 //            String cid1 = request.getParameter("cid1");
@@ -50,15 +50,14 @@ public class CartController {
             jsonObject.put("msg", "请先登录!");
 
         }
-       System.out.println("jsonObject = " + jsonObject.toJSONString());
+        System.out.println("jsonObject = " + jsonObject.toJSONString());
         return jsonObject.toJSONString();
     }
 
 
-
     @RequestMapping("/cart")
-    private String cart(HttpServletRequest request){
-        Member user = (Member)request.getSession().getAttribute("user");
+    private String cart(HttpServletRequest request) {
+        Member user = (Member) request.getSession().getAttribute("user");
         List<Map<String, Object>> maps = cartService.queryAll(user.getId().toString());
         for (Map map : maps) {
             System.out.println("map = " + map.get("pid").toString());
@@ -66,48 +65,48 @@ public class CartController {
             System.out.println("i = ===================" + i);
         }
         System.out.println("maps = " + maps);
-        request.setAttribute("carts",maps);
+        request.setAttribute("carts", maps);
         return "checkout";
     }
 
     @ResponseBody
-    @RequestMapping(value = "/doAddCart",produces = "application/json;charset=UTF-8")
-    public String doAddCart(HttpServletRequest request){
+    @RequestMapping(value = "/doAddCart", produces = "application/json;charset=UTF-8")
+    public String doAddCart(HttpServletRequest request) {
         JSONObject jsonObject = new JSONObject();
 
         HttpSession session = request.getSession();
         Member user = (Member) session.getAttribute("user");
 
         String user2 = request.getParameter("user");
-        if(user != null){
+        if (user != null) {
             String userId = user.getId().toString();
             String quantity = request.getParameter("quantity");
             String user1 = request.getParameter("user");
             String text = request.getParameter("text");
             System.out.println("text = " + text);
             String cid = request.getParameter("cid");
-            if("加入购物车".equals(text)){
-                jsonObject.put("msg","加入购物车成功（"+quantity+"个）");
+            if ("加入购物车".equals(text)) {
+                jsonObject.put("msg", "加入购物车成功（" + quantity + "个）");
                 //加入购物车
                 int id = cartService.add(userId, cid, quantity);
-                if(id > 0 ){
+                if (id > 0) {
                     //System.out.println("添加成功");
-                }else{
+                } else {
                     //System.out.println("添加失败");
                 }
-            }else if("立即购买".equals(text)){
+            } else if ("立即购买".equals(text)) {
                 //购买 --》 订单
-                jsonObject.put("msg","");
+                jsonObject.put("msg", "");
 
             }
-        }else if(user2 != null){
+        } else if (user2 != null) {
             String userId = user.getId().toString();
             String cid1 = request.getParameter("cid1");
             System.out.println("cid1 = " + cid1);
-            int id = cartService.add(userId, cid1,"1");
-            if(id > 0 ){
+            int id = cartService.add(userId, cid1, "1");
+            if (id > 0) {
                 System.out.println("添加成功");
-            }else{
+            } else {
                 System.out.println("添加失败");
 
             }
@@ -117,8 +116,8 @@ public class CartController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/totle",produces = "application/json;charset=UTF-8")
-    public String totle(HttpServletRequest request){
+    @RequestMapping(value = "/totle", produces = "application/json;charset=UTF-8")
+    public String totle(HttpServletRequest request) {
         JSONObject jsonObject = new JSONObject();
 
         HttpSession session = request.getSession();
@@ -130,83 +129,82 @@ public class CartController {
         String t_checked = request.getParameter("t_checked");
         Double totle = 0.0;
         List<Map<String, Object>> maps = cartService.queryAll(uid);
+        System.out.println("maps =----------" + maps);
 
-        if(!checked.equals("null")){
+        if (!("null".equals(checked))) {
             int i = 0;
-            if(checked.equals("true")){
-                i  = cartService.setType(uid, cid,1);
-            }else{
-                i  = cartService.setType(uid, cid,0);
+            if ("true".equals(checked)) {
+                i = cartService.setType(uid, cid, 1);
+            } else {
+                i = cartService.setType(uid, cid, 0);
             }
 
-            if(i == 1) {
+            if (i == 1) {
                 //设置成功
-            }else{
+            } else {
                 //设置失败
             }
             List<Map<String, Object>> maps1 = cartService.querySelect(uid);
+            System.out.println("maps1 = " + maps1);
 
             for (Map map : maps1) {
-                totle = totle+Double.parseDouble(map.get("price").toString()) * Integer.parseInt(map.get("count").toString());
+                totle = totle + Double.parseDouble(map.get("price").toString()) * Integer.parseInt(map.get("count").toString());
             }
-        }else if(t_checked.equals("true")){
+        } else if (t_checked.equals("true")) {
 
 
             for (Map map : maps) {
-                cartService.setType(uid,map.get("cid").toString(),1);
-                totle = totle+Double.parseDouble(map.get("price").toString()) * Integer.parseInt(map.get("count").toString());
+                cartService.setType(uid, map.get("pid").toString(), 1);
+                totle = totle + Double.parseDouble(map.get("price").toString()) * Integer.parseInt(map.get("count").toString());
             }
-        }else if(t_checked.equals("false")){
+        } else if (t_checked.equals("false")) {
             for (Map map : maps) {
-                cartService.setType(uid,map.get("cid").toString(),0);
+                cartService.setType(uid, map.get("cid").toString(), 0);
             }
             totle = 0.0;
         }
 
 
-
-        jsonObject.put("msg",totle);
+        jsonObject.put("msg", totle);
         System.out.println("jsonObject = " + jsonObject.toJSONString());
         return jsonObject.toJSONString();
 
     }
 
     @ResponseBody
-    @RequestMapping(value = "/tot",produces = "application/json;charset=UTF-8")
-    public String tot(HttpServletRequest request){
+    @RequestMapping(value = "/tot", produces = "application/json;charset=UTF-8")
+    public String tot(HttpServletRequest request) {
         JSONObject jsonObject = new JSONObject();
 
         HttpSession session = request.getSession();
         Member user = (Member) session.getAttribute("user");
         String uid = user.getId().toString();
-        String cid = request.getParameter("cid");
         String t_checked = request.getParameter("t_checked");
         double totle = 0.0;
         List<Map<String, Object>> maps = cartService.queryAll(uid);
-        System.out.println("maps +++++++++++++++++= " + maps);
 
-        if(t_checked.equals("true")){
+        if (t_checked.equals("true")) {
             for (Map map : maps) {
-                cartService.setType(uid,map.get("pid").toString(),1);
-                totle = totle+Double.parseDouble(map.get("price").toString()) * Integer.parseInt(map.get("count").toString());
+                cartService.setType(uid, map.get("pid").toString(), 1);
+                totle = totle + Double.parseDouble(map.get("price").toString()) * Integer.parseInt(map.get("count").toString());
             }
-        }else{
+        } else {
             for (Map map : maps) {
-                cartService.setType(uid,map.get("pid").toString(),0);
+                cartService.setType(uid, map.get("pid").toString(), 0);
             }
             totle = 0.0;
         }
 
 
-        jsonObject.put("msg",totle);
+        jsonObject.put("msg", totle);
         System.out.println("jsonObject = " + jsonObject.toJSONString());
         return jsonObject.toJSONString();
 
     }
 
     @ResponseBody
-    @RequestMapping(value = "/doCart",produces = "application/json;charset=UTF-8")
-    public String doCart(HttpServletRequest request){
+    @RequestMapping(value = "/doCart", produces = "application/json;charset=UTF-8")
+    public String doCart(HttpServletRequest request) {
         System.out.println(" ********************");
 
         JSONObject jsonObject = new JSONObject();
@@ -224,17 +222,63 @@ public class CartController {
         String userid = user.getId().toString();
         int add = cartService.doadd(userid, cid, count);
         System.out.println("add = " + add);
-        if(add >0){
+        if (add > 0) {
             //System.out.println("修改成功");
-        }else{
+        } else {
             //System.out.println("修改失败");
         }
-        Double money = i*i1;
-        jsonObject.put("msg",money);
+        Double money = i * i1;
+        jsonObject.put("msg", money);
+
+        List<Map<String, Object>> maps1 = cartService.querySelect(userid);
+        double totle = 0.0;
+        for (Map map : maps1) {
+            totle = totle + Double.parseDouble(map.get("price").toString()) * Integer.parseInt(map.get("count").toString());
+        }
+        jsonObject.put("totle", totle);
         System.out.println("jsonObject = " + jsonObject.toJSONString());
         return jsonObject.toJSONString();
 
     }
 
+    @RequestMapping("/deleteCart")
+    private String deleteCart(HttpServletRequest request,String cid) {
+        Member user = (Member) request.getSession().getAttribute("user");
+        String userId = user.getId().toString();
+        System.out.println("\"************\" = " + "************");
+        if (cid == null) {
+            //清空购物车
+            System.out.println("----------");
+            int i = cartService.deleteAll(userId);
+            if (i > 0) {
+                System.out.println("清空购物车成功");
+            } else {
+                System.out.println("清空购物车失败");
+            }
+
+
+        } else {
+            //删除单个商品
+            int i = cartService.deleteCart(userId, cid);
+            if (i > 0) {
+               /* System.out.println("删除成功");*/
+                return "redirect:/cart";
+            } else {
+                System.out.println("删除失败");
+            }
+        }
+        return "";
+    }
+
+
+    @RequestMapping(value = "/empty", produces = "application/json;charset=UTF-8")
+    public String empty(){
+        System.out.println("=============");
+        return "redirect:/deleteCart";
+    }
 
 }
+
+
+
+

@@ -35,8 +35,7 @@
     </update>
 
     <select id="querySelect" resultType="map">
-        SELECT * FROM member_cart,product WHERE mid = #{uid} AND member_cart.pid = product.ID
-    </select>
+SELECT * FROM member_cart,product WHERE mid = #{uid} AND member_cart.pid = product.ID AND type = 1    </select>
 
     <delete id="deleteSelete">
         DELETE FROM member_cart WHERE mid = #{id} AND TYPE = 1

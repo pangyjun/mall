@@ -26,7 +26,8 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @RequestMapping("products")
+
+    @RequestMapping("/products")
     public String products(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
         request.setCharacterEncoding("utf-8");
         String id1 = request.getParameter("id1");
@@ -105,6 +106,14 @@ public class ProductController {
 
     @RequestMapping("/toindex")
     private String index(HttpServletRequest request){
+        ServletContext servletContext = request.getServletContext();
+        List<Product> maps = productService.queryNewCake2_8();
+        Product map1 = productService.queryNewCake1();
+        Product map2 = productService.queryNewCake2();
+        servletContext.setAttribute("new8_10",maps);
+        servletContext.setAttribute("one",map1);
+        servletContext.setAttribute("two",map2);
+
         HttpSession session = request.getSession();
 
         if(session.getAttribute("user") != null){

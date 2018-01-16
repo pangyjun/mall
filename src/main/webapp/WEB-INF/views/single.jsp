@@ -23,7 +23,13 @@
                 animation: "slide",
                 controlNav: "thumbnails"
             });
+            $("#quantity").click(function () {
+                $("#s").text("")
+            })
+
             $(".btn_form").children("a").click(function () {
+
+
                 var cid = ${requestScope.cake.id};
                 var  quantity  = $("#quantity").val();
 
@@ -107,7 +113,7 @@
 
                 <div class="btn_form">
                     <a href="#" class="add-cart item_add">加入购物车</a>
-                    <a href="do_order?cid=${requestScope.cake.id}" class="add-cart item_add">立即购买</a>
+                    <a href="do_order?cid=${requestScope.cake.id}" class="add-cart item_add">立即购买</a><br>
                     <span id="s"></span>
                 </div>
                 <div class="tag">

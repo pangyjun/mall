@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -109,6 +110,11 @@ public class MemberController {
             request.getSession().setAttribute("user",login.get("success"));
         }
         return jsonObject.toJSONString();
+    }
+
+    @RequestMapping("/toPassword")
+    private String password(){
+        return "password";
     }
 
     @ResponseBody

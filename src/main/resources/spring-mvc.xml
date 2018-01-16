@@ -26,25 +26,28 @@
 
 <mvc:view-controller path="/account" view-name="account"/>
 <mvc:view-controller path="/login" view-name="login"/>
-<mvc:view-controller path="/password" view-name="password"/>
 
 
-  <!--
-&lt;!&ndash;配置拦截器&ndash;&gt;
+<!--配置拦截器-->
 <mvc:interceptors>
     <mvc:interceptor>
         <mvc:mapping path="/**"/>
         <mvc:exclude-mapping path="/static/**"/>
         <mvc:exclude-mapping path="/login"/>
-        <mvc:exclude-mapping path="/index"/>
+        <mvc:exclude-mapping path="/toindex"/>
         <mvc:exclude-mapping path="/account"/>
         <mvc:exclude-mapping path="/commom"/>
-        <mvc:exclude-mapping path="/password"/>
-        <mvc:exclude-mapping path="/product"/>
+        <mvc:exclude-mapping path="/updatePass"/>
+        <mvc:exclude-mapping path="/passAjax"/>
+        <mvc:exclude-mapping path="/products"/>
+        <mvc:exclude-mapping path="/loginAjax"/>
         <mvc:exclude-mapping path="/single"/>
+        <mvc:exclude-mapping path="/regist"/>
+        <mvc:exclude-mapping path="/regAjax"/>
+        <mvc:exclude-mapping path="/toPassword"/>
 
         <ref bean="loginInterception"/>
     </mvc:interceptor>
-</mvc:interceptors>-->
+</mvc:interceptors>
 
 </beans>

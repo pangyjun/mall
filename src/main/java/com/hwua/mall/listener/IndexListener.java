@@ -36,15 +36,9 @@ public class IndexListener implements ServletContextListener {
         ProductService productService = wac.getBean(ProductService.class);
 
         System.out.println("categoryService = " + categoryService);
-        System.out.println("productService = " + productService);
         ServletContext servletContext = servletContextEvent.getServletContext();
         servletContext.setAttribute("cbs",categoryService.QueryAll());
-        List<Product> maps = productService.queryNewCake2_8();
-        Product map1 = productService.queryNewCake1();
-        Product map2 = productService.queryNewCake2();
-        servletContext.setAttribute("new8_10",maps);
-        servletContext.setAttribute("one",map1);
-        servletContext.setAttribute("two",map2);
+
 
 
     }

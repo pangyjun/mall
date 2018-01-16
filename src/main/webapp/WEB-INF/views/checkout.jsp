@@ -95,6 +95,7 @@
 
 
             $("input[name='quantity']").click(function () {
+
                 var money = this;
                 $.ajax({
                     url: "${ctx}/doCart",
@@ -106,6 +107,7 @@
                     success: function (result) {
                         console.log(result)
                         $(money).parent().parent().nextAll("li").children("p").children("span").text(result.msg);
+                        $("#s").text(result.totle)
 
                     },
                     error: function (error) {
@@ -136,12 +138,13 @@
 
 
                         <div class="cart-item cyc">
+                            <a href="single?id=${cake.pid}">
                             <img src="${ctx}/static/images/${fn:substring(cake.imgs, 0, fn:indexOf(cake.imgs, ","))}"
-                                 alt="">
+                                 alt=""></a>
                         </div>
                         <div class="cart-item-info">
 
-                            <h3><a href="#"> ${cake.name}</a></h3>
+                            <h3><a href="single?id=${cake.pid}"> ${cake.name}</a></h3>
                             <ul class="qty">
                                 <br/><br/>
                                 <li><p>单价: $${cake.price}</p></li>

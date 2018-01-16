@@ -26,7 +26,12 @@
   </div>
 </div>
 <!--//banner-->
-<!--gallery-->
+<!--gallery-->    <br><br><br>
+<div class="register-top-grid">
+    <h3>新品上架</h3>
+
+
+</div>
 <div class="gallery">
   <div class="container">
     <div class="gallery-grids">
