@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwua.commom.dao.CartMapper">
+    <insert id="doUpdate">
+        INSERT INTO member_cart(mid, pid, count) VALUES (#{arg0},#{arg1},#{arg2})
+    </insert>
+    <select id="queryAll" resultType="map">
+        SELECT * FROM member_cart ,product WHERE mid = #{userId} AND product.ID = member_cart.pid
+    </select>
+
+    <select id="queryByCid" resultType="map">
+        SELECT * FROM member_cart WHERE mid = #{arg1} AND pid = #{arg0}
+    </select>
+
+    <update id="update">
+        UPDATE member_cart SET count = #{arg0} WHERE mid = #{arg1};
+    </update>
+
+    <delete id="doDelete">
+        DELETE FROM member_cart WHERE pid IN (SELECT ID FROM product WHERE product.ID = #{arg1}) AND mid = #{arg0}
+    </delete>
+
+    <delete id="doDeleteAll">
+        DELETE FROM member_cart WHERE mid = #{userId}
+    </delete>
+
+    <update id="doCount">
+        UPDATE member_cart SET COUNT = #{arg2} WHERE mid = #{arg0} AND pid = #{arg1}
+    </update>
+
+    <update id="setType">
+        UPDATE member_cart SET  TYPE = #{arg2} WHERE mid = #{arg0} AND pid = #{arg1}
+    </update>
+
+    <select id="querySelect" resultType="map">
+SELECT * FROM member_cart,product WHERE mid = #{uid} AND member_cart.pid = product.ID AND type = 1    </select>
+
+    <delete id="deleteSelete">
+        DELETE FROM member_cart WHERE mid = #{id} AND TYPE = 1
+    </delete>
+
+
+
+
+
+
+
+
+</mapper>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwua.commom.dao.MemberMapper">
+    <select id="queryByTel" resultType="member">
+        SELECT * FROM member WHERE TEL = #{tel}
+    </select>
+
+    <select id="queryUser" resultType="member">
+        SELECT * FROM member WHERE  TEL = #{arg0} AND PASSWORD = #{arg1}
+    </select>
+
+    <select id="queryByName" resultType="member">
+        SELECT * FROM member WHERE USERNAME = #{username}
+    </select>
+
+    <insert id="doUpdate" parameterType="member">
+        insert into member (USERNAME, PASSWORD, GENDER, TEL) values (#{username},#{password},#{gender},#{tel});
+    </insert>
+
+    <update id="changeInfo" parameterType="member">
+        UPDATE member set USERNAME = #{username} ,GENDER = #{gender} , tel = #{tel} WHERE id = #{id}
+    </update>
+
+    <update id="updatePass">
+        UPDATE member SET PASSWORD = #{arg1} WHERE USERNAME = #{arg0}
+    </update>
+
+
+</mapper>

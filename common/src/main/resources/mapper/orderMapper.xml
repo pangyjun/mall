@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwua.commom.dao.OrderMapper">
+
+    <insert id="doInsert" parameterType="orders" useGeneratedKeys="true" keyProperty="id">
+INSERT INTO orders(mid,aid,TOT_MONEY) VALUES (#{mid},#{aid},#{tot_money});
+    </insert>
+
+    <insert id="doInsertDetail" parameterType="orderDetail">
+        INSERT INTO order_detail(pid,count,PRICE,oid) VALUES (#{pid},#{count},#{price},#{oid})
+    </insert>
+
+    <insert id="doAddBatch" parameterType="orderDetail">
+        INSERT INTO order_detail(pid,count,PRICE,oid) VALUES
+
+        <foreach collection="list" item="orderDetail" separator=",">
+            (#{orderDetail.pid},#{orderDetail.count},#{orderDetail.price},#{orderDetail.oid})
+        </foreach>
+    </insert>
+
+    <update id="setPayTime">
+       UPDATE orders SET  PAY_TIME = now() WHERE id = #{oderid}
+    </update>
+
+    <select id="queryNoPay1" resultType="map">
+        SELECT * FROM orders WHERE mid = #{id} AND PAY_TIME is NULL AND FLAG = 0
+    </select>
+
+    <select id="queryNoPay2" resultType="map">
+        SELECT * FROM order_detail ,product WHERE product.ID = order_detail.pid AND order_detail.oid =#{id}
+    </select>
+    <select id="queryHavePay1" resultType="map">
+        SELECT * FROM orders WHERE mid = #{arg0} AND PAY_TIME is NOT NULL AND orders.SEND_TIME IS null AND FLAG = 0
+    </select>
+
+    <select id="querySend1" resultType="map">
+        SELECT * FROM orders WHERE mid = #{arg0} AND CONFIRM_TIME is NULL AND orders.SEND_TIME IS NOT null AND FLAG = 0
+    </select>
+
+    <select id="queryNoConfirm1" resultType="map">
+       SELECT * FROM orders WHERE mid = #{arg0} AND CONFIRM_TIME is NOT NULL AND orders.succ = 0 AND FLAG = 0
+    </select>
+
+    <select id="querySuccess1" resultType="map">
+       SELECT * FROM orders WHERE mid = #{arg0} AND succ = 1  AND FLAG = 0
+    </select>
+
+    <update id="delO2">
+        UPDATE orders SET FLAG = 1 WHERE id = #{arg0}
+    </update>
+
+
+    <update id="doRemind">
+        UPDATE orders SET remind = remind+1  WHERE id = #{arg0}
+    </update>
+
+    <update id="doPay">
+        UPDATE orders SET pay_time = now()  WHERE id = #{arg0}
+    </update>
+    <update id="order_confirm">
+        UPDATE orders SET confirm_time = now()  WHERE id = #{arg0}
+    </update>
+
+
+</mapper>

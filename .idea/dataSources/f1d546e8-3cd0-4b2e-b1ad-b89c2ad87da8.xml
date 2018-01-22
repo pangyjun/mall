@@ -174,196 +174,202 @@
       <Position>2</Position>
       <DataType>int(1)|0</DataType>
     </column>
-    <column id="57" parent="16" name="pid">
+    <column id="57" parent="16" name="describes">
       <Position>3</Position>
-      <DataType>int(6)|0</DataType>
-    </column>
-    <column id="58" parent="16" name="mid">
-      <Position>4</Position>
-      <DataType>int(6)|0</DataType>
-    </column>
-    <column id="59" parent="16" name="describes">
-      <Position>5</Position>
       <DataType>varchar(300)|0</DataType>
     </column>
-    <column id="60" parent="16" name="advice">
-      <Position>6</Position>
-      <DataType>varchar(200)|0</DataType>
+    <column id="58" parent="16" name="create_time">
+      <Position>4</Position>
+      <DataType>timestamp|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
     </column>
-    <column id="61" parent="16" name="flag">
-      <Position>7</Position>
+    <column id="59" parent="16" name="flag">
+      <Position>5</Position>
+      <DataType>int(11)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="60" parent="16" name="pid">
+      <Position>6</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <index id="62" parent="16" name="fk_comment_mid">
-      <ColNames>mid</ColNames>
-    </index>
-    <index id="63" parent="16" name="fk_comment_pid">
-      <ColNames>pid</ColNames>
-    </index>
-    <key id="64" parent="16" name="PRIMARY">
+    <key id="61" parent="16" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="65" parent="16" name="fk_comment_pid">
-      <ColNames>pid</ColNames>
-      <RefSchemaName>mall</RefSchemaName>
-      <RefTableName>product</RefTableName>
-      <RefColNames>ID</RefColNames>
-    </foreign-key>
-    <foreign-key id="66" parent="16" name="fk_comment_mid">
-      <ColNames>mid</ColNames>
-      <RefSchemaName>mall</RefSchemaName>
-      <RefTableName>member</RefTableName>
-      <RefColNames>ID</RefColNames>
-    </foreign-key>
-    <column id="67" parent="17" name="ID">
+    <column id="62" parent="17" name="ID">
       <Position>1</Position>
       <DataType>int(4)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="68" parent="17" name="USERNAME">
+    <column id="63" parent="17" name="USERNAME">
       <Position>2</Position>
       <DataType>varchar(20)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="69" parent="17" name="PASSWORD">
+    <column id="64" parent="17" name="PASSWORD">
       <Position>3</Position>
       <DataType>varchar(100)|0</DataType>
     </column>
-    <column id="70" parent="17" name="GENDER">
+    <column id="65" parent="17" name="GENDER">
       <Position>4</Position>
       <DataType>varchar(6)|0</DataType>
       <DefaultExpression>&apos;保密&apos;</DefaultExpression>
     </column>
-    <column id="71" parent="17" name="TEL">
+    <column id="66" parent="17" name="TEL">
       <Position>5</Position>
       <DataType>varchar(15)|0</DataType>
     </column>
-    <index id="72" parent="17" name="USERNAME">
+    <index id="67" parent="17" name="USERNAME">
       <ColNames>USERNAME</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="73" parent="17" name="PRIMARY">
+    <key id="68" parent="17" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="74" parent="17" name="USERNAME">
+    <key id="69" parent="17" name="USERNAME">
       <ColNames>USERNAME</ColNames>
       <UnderlyingIndexName>USERNAME</UnderlyingIndexName>
     </key>
-    <column id="75" parent="18" name="id">
+    <column id="70" parent="18" name="id">
       <Position>1</Position>
       <DataType>int(6)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="76" parent="18" name="mid">
+    <column id="71" parent="18" name="mid">
       <Position>2</Position>
       <DataType>int(6)|0</DataType>
     </column>
-    <column id="77" parent="18" name="pid">
+    <column id="72" parent="18" name="pid">
       <Position>3</Position>
       <DataType>int(6)|0</DataType>
     </column>
-    <column id="78" parent="18" name="count">
+    <column id="73" parent="18" name="count">
       <Position>4</Position>
       <DataType>int(4)|0</DataType>
       <DefaultExpression>&apos;1&apos;</DefaultExpression>
     </column>
-    <column id="79" parent="18" name="type">
+    <column id="74" parent="18" name="type">
       <Position>5</Position>
       <DataType>int(1)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <index id="80" parent="18" name="fk_product_in_cart_cid">
+    <index id="75" parent="18" name="fk_product_in_cart_cid">
       <ColNames>mid</ColNames>
     </index>
-    <index id="81" parent="18" name="fk_product_in_cart_pid">
+    <index id="76" parent="18" name="fk_product_in_cart_pid">
       <ColNames>pid</ColNames>
     </index>
-    <key id="82" parent="18" name="PRIMARY">
+    <key id="77" parent="18" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="83" parent="18" name="fk_product_in_cart_cid">
+    <foreign-key id="78" parent="18" name="fk_product_in_cart_cid">
       <ColNames>mid</ColNames>
       <RefSchemaName>mall</RefSchemaName>
       <RefTableName>member</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <column id="84" parent="19" name="id">
+    <column id="79" parent="19" name="id">
       <Position>1</Position>
       <DataType>int(20)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="85" parent="19" name="pid">
+    <column id="80" parent="19" name="pid">
       <Position>2</Position>
       <DataType>int(4)|0</DataType>
     </column>
-    <column id="86" parent="19" name="count">
+    <column id="81" parent="19" name="count">
       <Position>3</Position>
       <DataType>int(4)|0</DataType>
     </column>
-    <column id="87" parent="19" name="price">
+    <column id="82" parent="19" name="price">
       <Position>4</Position>
-      <DataType>int(4)|0</DataType>
+      <DataType>double|0</DataType>
     </column>
-    <column id="88" parent="19" name="oid">
+    <column id="83" parent="19" name="oid">
       <Position>5</Position>
       <DataType>int(20)|0</DataType>
     </column>
-    <index id="89" parent="19" name="fk_order_detail_oid">
+    <column id="84" parent="19" name="cid">
+      <Position>6</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <index id="85" parent="19" name="fk_order_detail_oid">
       <ColNames>oid</ColNames>
     </index>
-    <index id="90" parent="19" name="fk_order_detail_pid">
+    <index id="86" parent="19" name="fk_order_detail_pid">
       <ColNames>pid</ColNames>
     </index>
-    <key id="91" parent="19" name="PRIMARY">
+    <index id="87" parent="19" name="order_detail_comment_id_fk">
+      <ColNames>cid</ColNames>
+    </index>
+    <key id="88" parent="19" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="92" parent="20" name="id">
+    <foreign-key id="89" parent="19" name="order_detail_comment_id_fk">
+      <ColNames>cid</ColNames>
+      <RefSchemaName>mall</RefSchemaName>
+      <RefTableName>comment</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="90" parent="20" name="id">
       <Position>1</Position>
       <DataType>int(20)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="93" parent="20" name="mid">
+    <column id="91" parent="20" name="mid">
       <Position>2</Position>
       <DataType>int(6)|0</DataType>
     </column>
-    <column id="94" parent="20" name="aid">
+    <column id="92" parent="20" name="aid">
       <Position>3</Position>
       <DataType>int(6)|0</DataType>
     </column>
-    <column id="95" parent="20" name="tot_money">
+    <column id="93" parent="20" name="tot_money">
       <Position>4</Position>
-      <DataType>int(10)|0</DataType>
+      <DataType>double|0</DataType>
     </column>
-    <column id="96" parent="20" name="order_time">
+    <column id="94" parent="20" name="order_time">
       <Position>5</Position>
-      <DataType>date|0</DataType>
+      <DataType>timestamp|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
     </column>
-    <column id="97" parent="20" name="pay_time">
+    <column id="95" parent="20" name="pay_time">
       <Position>6</Position>
       <DataType>date|0</DataType>
     </column>
-    <column id="98" parent="20" name="confirm_time">
+    <column id="96" parent="20" name="confirm_time">
       <Position>7</Position>
       <DataType>date|0</DataType>
     </column>
-    <column id="99" parent="20" name="send_time">
+    <column id="97" parent="20" name="send_time">
       <Position>8</Position>
       <DataType>date|0</DataType>
     </column>
-    <column id="100" parent="20" name="flag">
+    <column id="98" parent="20" name="flag">
       <Position>9</Position>
+      <DataType>int(11)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="99" parent="20" name="succ">
+      <Position>10</Position>
+      <DataType>int(11)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="100" parent="20" name="remind">
+      <Position>11</Position>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
@@ -435,69 +441,68 @@
       <Position>10</Position>
       <DataType>double|0</DataType>
     </column>
-    <index id="116" parent="21" name="NAME">
+    <column id="116" parent="21" name="sale">
+      <Position>11</Position>
+      <DataType>int(11)|0</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <index id="117" parent="21" name="NAME">
       <ColNames>name</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="117" parent="21" name="PRIMARY">
+    <key id="118" parent="21" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="118" parent="21" name="NAME">
+    <key id="119" parent="21" name="NAME">
       <ColNames>name</ColNames>
       <UnderlyingIndexName>NAME</UnderlyingIndexName>
     </key>
-    <column id="119" parent="22" name="ID1">
+    <column id="120" parent="22" name="ID1">
       <Position>1</Position>
       <DataType>int(4)|0</DataType>
     </column>
-    <column id="120" parent="22" name="ID2">
+    <column id="121" parent="22" name="ID2">
       <Position>2</Position>
       <DataType>int(4)|0</DataType>
     </column>
-    <column id="121" parent="22" name="ID3">
+    <column id="122" parent="22" name="ID3">
       <Position>3</Position>
       <DataType>int(4)|0</DataType>
     </column>
-    <column id="122" parent="22" name="pid">
+    <column id="123" parent="22" name="pid">
       <Position>4</Position>
       <DataType>int(4)|0</DataType>
     </column>
-    <index id="123" parent="22" name="fk_T_RELATION_1_2_3_id1">
+    <index id="124" parent="22" name="fk_T_RELATION_1_2_3_id1">
       <ColNames>ID1</ColNames>
     </index>
-    <index id="124" parent="22" name="fk_T_RELATION_1_2_3_id2">
+    <index id="125" parent="22" name="fk_T_RELATION_1_2_3_id2">
       <ColNames>ID2</ColNames>
     </index>
-    <index id="125" parent="22" name="fk_T_RELATION_1_2_3_id3">
+    <index id="126" parent="22" name="fk_T_RELATION_1_2_3_id3">
       <ColNames>ID3</ColNames>
     </index>
-    <index id="126" parent="22" name="fk_T_RELATION_1_2_3_pid">
+    <index id="127" parent="22" name="fk_T_RELATION_1_2_3_pid">
       <ColNames>pid</ColNames>
     </index>
-    <foreign-key id="127" parent="22" name="fk_T_RELATION_1_2_3_id1">
+    <foreign-key id="128" parent="22" name="fk_T_RELATION_1_2_3_id1">
       <ColNames>ID1</ColNames>
       <RefSchemaName>mall</RefSchemaName>
       <RefTableName>category1</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <foreign-key id="128" parent="22" name="fk_T_RELATION_1_2_3_id2">
+    <foreign-key id="129" parent="22" name="fk_T_RELATION_1_2_3_id2">
       <ColNames>ID2</ColNames>
       <RefSchemaName>mall</RefSchemaName>
       <RefTableName>category2</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
-    <foreign-key id="129" parent="22" name="fk_T_RELATION_1_2_3_id3">
+    <foreign-key id="130" parent="22" name="fk_T_RELATION_1_2_3_id3">
       <ColNames>ID3</ColNames>
       <RefSchemaName>mall</RefSchemaName>
       <RefTableName>category3</RefTableName>
-      <RefColNames>ID</RefColNames>
-    </foreign-key>
-    <foreign-key id="130" parent="22" name="fk_T_RELATION_1_2_3_pid">
-      <ColNames>pid</ColNames>
-      <RefSchemaName>mall</RefSchemaName>
-      <RefTableName>product</RefTableName>
       <RefColNames>ID</RefColNames>
     </foreign-key>
     <column id="131" parent="23" name="dbid">
