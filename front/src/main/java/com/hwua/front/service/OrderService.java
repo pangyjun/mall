@@ -2,6 +2,8 @@ package com.hwua.front.service;
 
 
 
+import com.hwua.commom.po.Address;
+import com.hwua.commom.po.Comment;
 import com.hwua.commom.po.OrderDetail;
 import com.hwua.commom.po.Orders;
 
@@ -37,4 +39,25 @@ public interface OrderService {
     int order_confirm(String orderId);
 
     List<Map<String,Object>> queryByOrderId(String orderId);
+
+    int diInsertComm(Comment comment);
+
+    int doUpdateOderDetail(Integer oid, int cid);
+
+
+    int setSucc(Integer orderId);
+
+    List<Address> selectAddr(Integer id);
+
+    List<Map> selectComm(Integer mid);
+
+    Address queryAddress(Integer id);
+
+
+    List<Address> queryAddressList(Integer id);
+
+    int updateAddr(Integer id, Address address);
+
+    Address queryAddress1(Integer mid,Address address2);
+
 }

@@ -14,6 +14,15 @@ public class Comment {
 
     private Integer orderId;
     private Integer oid;
+    private Integer mid;
+
+    public Integer getMid() {
+        return mid;
+    }
+
+    public void setMid(Integer mid) {
+        this.mid = mid;
+    }
 
     @Override
     public String toString() {

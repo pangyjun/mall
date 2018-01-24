@@ -183,7 +183,12 @@
                     <input type="submit" value="结算(0)" style="background-color: #F07818;color: white"/>
 
                 </div>
+                <br><br>
                 <a href="order_list">我的订单</a>
+                <br>
+                <a href="address_list">收货地址管理</a>
+   <br>
+                <a href="commend_list">评价清单</a>
 
             </div>
 

@@ -69,7 +69,7 @@
                             </p>
                             <div class="new-mu_l2a new-p-re">
                                 <p class="new-mu_l2cw">
-                                    <span class="title">收货地址： <input type="text" required name="address" <%--&lt;%&ndash;value="${sessionScope.get("user").addr}&ndash;%&gt;"--%>></span>
+                                    <span class="title">收货地址： <input type="text" required name="address" value="${requestScope.addr.addr}"></span>
                             </div>
                         </div>
                     </div>

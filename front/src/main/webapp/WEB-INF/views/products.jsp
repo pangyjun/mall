@@ -55,7 +55,7 @@
 
                     },
                     error:function (error) {
-                        $(succ).next("span").text(error);                    },
+                        $(succ).next("span").text(error);                    }
                 })
             })
         })
@@ -74,11 +74,10 @@
         <c:otherwise>
 
                 <h2>我们的蛋糕(${requestScope.size})</h2>
-            <select>
-                <option><a href="${ctx}/search?value=1">销量由高到低</a></option>
-                <option><a href="${ctx}/search?value=2">价格从低到高</a></option>
-                <option><a href="${ctx}/search?value=3">好评排序由高到低</a></option>
-            </select>
+
+                <a href="${ctx}/products?value=1&page=${i.current}&id1=${requestScope.id1}&id2=${requestScope.id2}&id3=${requestScope.id3}&id=${requestScope.id}&search=${requestScope.search}">销量由高到低</a><br>
+                <a href="${ctx}/products?value=2&page=${i.current}&id1=${requestScope.id1}&id2=${requestScope.id2}&id3=${requestScope.id3}&id=${requestScope.id}&search=${requestScope.search}">价格从低到高</a><br>
+
             <br><br>分页：
 
 
@@ -128,8 +127,8 @@
         </c:otherwise>
         </c:choose>
 
-        <c:forEach begin="1" end="${(requestScope.size+17) / 18 }" varStatus="i">
-            <a href="products?page=${i.current}">${i.current}</a>
+        <c:forEach begin="1" end="${requestScope.size}" varStatus="i">
+            <a href="products?page=${i.current}&id1=${requestScope.id1}&id2=${requestScope.id2}&id3=${requestScope.id3}&id=${requestScope.id}&search=${requestScope.search}&value=${requestScope.value}">${i.current}</a>
         </c:forEach>
     </div>
 </div>

@@ -38,6 +38,63 @@
         SELECT * FROM (SELECT @rowno:=@rowno+1 as rowno,r.* from (SELECT id, NAME,PRICE,IMGS FROM product ORDER BY TIME DESC) r,(select @rowno:=0) t) temp WHERE temp.rowno =2
     </select>
 
+    <select id="queryOrder1" resultType="product">
+        SELECT * FROM product ORDER BY sale DESC
+    </select>
 
+    <select id="queryOrder2" resultType="product">
+        SELECT * FROM product ORDER BY price
+    </select>
+
+    <select id="queryOrder3" resultType="product">
+SELECT * FROM product  LEFT JOIN comment  ON product.id  = comment.pid GROUP BY name ORDER BY comment.grade DESC
+
+    </select>
+
+    <select id="queryComm" resultType="map">
+        SELECT * FROM product,comment,member WHERE product.id = comment.pid AND pid = #{arg0} AND member.ID = comment.mid
+    </select>
+
+<select id="querySame" resultType="product">
+    SELECT * FROM product
+</select>
+
+
+    <select id="query" parameterType="map" resultType="product">
+        SELECT * FROM product  WHERE 1=1
+        <if test="id1 != null &amp; id2 != null &amp; id3 != null ">
+            AND ID IN (SELECT pid FROM RELATION_1_2_3 WHERE  ID1=#{id1} AND ID2= #{id2} AND ID3=#{id3} )
+        </if>
+        <if test="id1 != null &amp; id2 == null &amp; id3 == null ">
+            AND ID IN (SELECT pid FROM RELATION_1_2_3 WHERE ID1 = 3)
+        </if>
+        <if test=" search != null">
+            AND NAME LIKE CONCAT('%',#{search},'%') or comm LIKE CONCAT('%',#{search},'%')
+        </if>
+        <if test=" value != null">
+            <if test="value == 1 "> ORDER BY sale DESC </if>
+            <if test="value == 2 "> ORDER BY price </if>
+        </if>
+        limit #{start},18
+
+    </select>
+
+    <select id="queryCount" parameterType="map" resultType="int">
+        SELECT COUNT(id) FROM product  WHERE 1=1
+        <if test="id1 != null &amp; id2 != null &amp; id3 != null ">
+            AND ID IN (SELECT pid FROM RELATION_1_2_3 WHERE  ID1=#{id1} AND ID2= #{id2} AND ID3=#{id3} )
+        </if>
+        <if test="id1 != null &amp; id2 == null &amp; id3 == null ">
+            AND ID IN (SELECT pid FROM RELATION_1_2_3 WHERE ID1 = 3)
+        </if>
+        <if test=" search != null">
+            AND NAME LIKE CONCAT('%',#{search},'%') or comm LIKE CONCAT('%',#{search},'%')
+        </if>
+        <if test=" value != null">
+            <if test="value == 1 "> ORDER BY sale DESC </if>
+            <if test="value == 2 "> ORDER BY price </if>
+        </if>
+
+    </select>
 
 </mapper>

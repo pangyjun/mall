@@ -144,6 +144,23 @@
     </div>
 </div>
 
+</div>
+<!--//gallery-->
+<!--subscribe-->
+<br><br><br>
+<hr><br><br><br>
+    <div style="margin-left:200px">
+        <h4>评论</h4><br><br><br>
+        <c:forEach items="${requestScope.list}" var="comm" >
+        用户（${comm.USERNAME}）：${comm.describes}<br>
+        </c:forEach>
+
+    </div>
+
+<br><br><br>
+
+
+
 <!--related-products-->
 <div class="related-products">
     <div class="container">
@@ -173,7 +190,8 @@
                     </div>
                 </div>
             </div>
-
+        </div>
+    </div>
 </div>
 
 <%@include file="../../common/footer.jsp"%>

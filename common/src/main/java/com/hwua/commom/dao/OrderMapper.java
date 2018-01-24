@@ -2,6 +2,8 @@ package com.hwua.commom.dao;
 
 
 
+import com.hwua.commom.po.Address;
+import com.hwua.commom.po.Comment;
 import com.hwua.commom.po.OrderDetail;
 import com.hwua.commom.po.Orders;
 
@@ -23,6 +25,7 @@ public interface OrderMapper {
     List<Map<String,Object>> queryNoPay1(String id);
 
     List<Map<String,Object>> queryNoPay2(Object id);
+    List<Map<String,Object>> query(Object id);
 
 
     List<Map<String,Object>> querySuccess1(String id);
@@ -42,4 +45,22 @@ public interface OrderMapper {
     int order_confirm(String orderId);
 
     List<Map<String,Object>> queryByOrderId(String orderId);
+
+    int doInsertComm(Comment comment);
+
+    int doUpdateOderDetail(Integer oid, int cid);
+
+    int setSucc(Integer orderId);
+
+    List<Address> selectAddr(Integer id);
+
+    List<Map> selectComm(Integer mid);
+
+    Address queryAddress(Integer id);
+
+    List<Address> queryAddressList(Integer id);
+
+    int updateAddr(Integer id, Address address);
+
+    Address queryAddress1(Integer mid,Address address2);
 }

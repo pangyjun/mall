@@ -108,7 +108,7 @@
                                     <div class="row">
                                             <c:forEach items="${c1.c2}" var="c2" varStatus="ccc">
                                                 <div class="col-sm-4">
-                                                <h4>${c2.name}</h4>
+                                                <h4>${c2.NAME}</h4>
                                                     <ul class="multi-column-dropdown">
                                                         <c:forEach items="${c2.c3}" var="c3" varStatus="counter">
                                                             <li><a class="list" href="${ctx}/products?id1=${c1.ID}&id2=${c2.ID}&id3=${c3.ID}">${c3.NAME}</a></li>

@@ -49,6 +49,7 @@
                         console.log(result);
 //                        alert("success:"+JSON.stringify(result));
                         if (result.error){
+                            alert(result.error)
                             $("input[name = 'tell']").val(""),
                                 $("input[name = 'password1']").val("")
 

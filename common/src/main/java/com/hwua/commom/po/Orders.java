@@ -12,6 +12,15 @@ public class Orders {
     private Date pay_time;
     private Date confirm_time;
     private Date send_time;
+    private String addr;
+
+    public String getAddr() {
+        return addr;
+    }
+
+    public void setAddr(String addr) {
+        this.addr = addr;
+    }
 
     @Override
     public String toString() {
@@ -25,6 +34,7 @@ public class Orders {
                 ", pay_time=" + pay_time +
                 ", confirm_time=" + confirm_time +
                 ", send_time=" + send_time +
+                ", addr='" + addr + '\'' +
                 '}';
     }
 

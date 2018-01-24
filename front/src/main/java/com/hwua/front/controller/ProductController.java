@@ -33,15 +33,67 @@ public class ProductController {
         String id = request.getParameter("id");
         String page = request.getParameter("page");
         String search = request.getParameter("search");
+        String value = request.getParameter("value");
+        id1 = "".equals(id1)?null:id1;
+        id2 = "".equals(id2)?null:id2;
+        id3 = "".equals(id3)?null:id3;
+        id = "".equals(id)?null:id;
+        search = "".equals(search)?null:search;
+        value = "".equals(value)?null:value;
+
 
         List<Product> list = null;
+        int size = 0;
+        int i = 0;
+        Integer val;
+        if(page == null || "".equals(page)){ i= 1;}else{i = Integer.parseInt(page);}
+        if(value == null || "".equals(value)){ val = null;}else{val = Integer.parseInt(value);}
+       /* if(search != null){
+            list = productService.rearch(search);
+            size = list.size();
+        }*/
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("id1",id1);
+        map.put("id2",id2);
+        map.put("id3",id3);
+        map.put("id",id);
+        map.put("search",search);
+        map.put("start",18*(i-1));
+        map.put("value",value);
+        list =  productService.query(map);
+        size= productService.queryCount(map);
+        if(size%18==0){
+            size=size/18;
+        }else{
+            size=size/18+1;
+        }
+        request.setAttribute("id1",id1);
+        request.setAttribute("id2",id2);
+        request.setAttribute("id3",id3);
+        request.setAttribute("id",id);
+        request.setAttribute("search",search);
+        request.setAttribute("value",value);
+
+
+      /*  List<Product> list = null;
         int size = 0;
         if(page != null){
             size = productService.queryAll().size();
             int i = Integer.parseInt(page);
 
              list = productService.queryAllLimit((i - 1) * 18);
-        }else if( id != null){
+        } if(value != null){
+            System.out.println("value ---------------= " + value);
+            if("1".equals(value)){
+                list = productService.queryOrder1(1);
+            } if("2".equals(value)){
+                list = productService.queryOrder2(2);
+            } if("3".equals(value)){
+                list = productService.queryOrder3(3);
+            }
+             size = list.size();
+
+        }else if( id != ""){
             size = productService.queryAll().size();
             //分页查询
             list = productService.queryAllLimit(1);
@@ -53,10 +105,10 @@ public class ProductController {
         }else if(id1 != null && id2 != null && id3 != null){
             list = productService.queryByCategory(id1, id2, id3);
             size = list.size();
-        }else{
+        }else if("3".equals(id1)){
             list = productService.queryCupCake();
             size = list.size();
-        }
+        }*/
 
         request.setAttribute("cakes",list);
         request.setAttribute("size",size);
@@ -122,12 +174,14 @@ public class ProductController {
 
 
     @RequestMapping("/single")
-    private String single(HttpServletRequest request,HttpServletResponse response){
-
+    private String single(Map map ,HttpServletRequest request,HttpServletResponse response){
 
 
         String id = request.getParameter("id");
+        List<Map> list = productService.queryComm(id);
+        map.put("list",list);
         Product product = productService.queryById(id);
+        List<Product> list1 = productService.querySame(id);
         request.setAttribute("cake",product);
         /*cakeBiz.querySame();*/
         Member user = (Member) request.getSession().getAttribute("user");

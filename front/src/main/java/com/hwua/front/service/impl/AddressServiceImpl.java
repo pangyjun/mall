@@ -17,4 +17,19 @@ public class AddressServiceImpl implements AddressService {
     public int doInsert(Address address1) {
         return addressMapper.doInsert(address1);
     }
+
+    @Override
+    public int delete(Integer id, Integer mid) {
+        return addressMapper.doDelete(id,mid);
+    }
+
+    @Override
+    public int doupdate(Address address) {
+        return addressMapper.doupdate(address);
+    }
+
+    @Override
+    public int updateFlag(Integer id) {
+        return addressMapper.updateFlag(id);
+    }
 }

@@ -1,6 +1,8 @@
 package com.hwua.front.service.impl;
 
 import com.hwua.commom.dao.OrderMapper;
+import com.hwua.commom.po.Address;
+import com.hwua.commom.po.Comment;
 import com.hwua.commom.po.OrderDetail;
 import com.hwua.commom.po.Orders;
 import com.hwua.front.service.OrderService;
@@ -66,7 +68,15 @@ public class OrderServiceImpl implements OrderService {
     public List queryNoConfirm(String id) {
         ArrayList<Object> list = new ArrayList<>();
         List<Map<String, Object>> maps = orderMapper.queryNoConfirm1(id);
-        return returnList(list, maps);
+        if(maps != null){
+            for (Map map : maps) {
+                list.add(map);
+                List<Map<String, Object>> maps2 = orderMapper.query(map.get("id"));
+                map.put("list",maps2);
+            }
+
+        }
+        return list;
 
     }
 
@@ -101,7 +111,54 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Map<String, Object>> queryByOrderId(String orderId) {
-       return  orderMapper.queryNoPay2(orderId);
+       return  orderMapper.query(orderId);
+    }
+
+    @Override
+    public int diInsertComm(Comment comment) {
+        return orderMapper.doInsertComm(comment);
+    }
+
+    @Override
+    public int doUpdateOderDetail(Integer oid, int cid) {
+
+        return orderMapper.doUpdateOderDetail(oid,cid);
+    }
+
+    @Override
+    public int setSucc(Integer orderId) {
+        return orderMapper.setSucc(orderId);
+    }
+
+    @Override
+    public List<Address> selectAddr(Integer id) {
+        return orderMapper.selectAddr(id);
+    }
+
+    @Override
+    public List<Map> selectComm(Integer mid) {
+        return orderMapper.selectComm(mid);
+    }
+
+    @Override
+    public Address queryAddress(Integer id) {
+
+        return orderMapper.queryAddress(id);
+    }
+
+    @Override
+    public List<Address> queryAddressList(Integer id) {
+        return orderMapper.queryAddressList(id);
+    }
+
+    @Override
+    public int updateAddr(Integer id, Address address) {
+        return orderMapper.updateAddr( id,  address) ;
+    }
+
+    @Override
+    public Address queryAddress1(Integer mid,Address address2) {
+        return orderMapper.queryAddress1(mid,address2);
     }
 
 

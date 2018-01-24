@@ -116,6 +116,10 @@ public class OrderController {
           }
           request.setAttribute("single","");
       }
+
+      Address addr = orderService.queryAddress(user.getId());
+
+      request.setAttribute("addr",addr);
       request.setAttribute("list",maps);
       request.setAttribute("money",i);
       return "order_info";
@@ -124,32 +128,75 @@ public class OrderController {
 
   @RequestMapping("/sure")
   public String sure(HttpServletRequest request){
-
       String username = request.getParameter("username");
       String tel = request.getParameter("tel");
       String address = request.getParameter("address");
       String money = request.getParameter("money");
-      HashMap<String, Object> map = new HashMap<String, Object>();
+
+
       Member user = (Member) request.getSession().getAttribute("user");
+      List<Address> list1 = orderService.queryAddressList(user.getId());
+      Orders orders = new Orders();
+      Address address2 = new Address();
+      address2.setTel(tel);
+      address2.setMid(user.getId());
+      address2.setName(username);
+      address2.setAddr(address);
+      orders.setAddr(address2.getAddr());
+      System.out.println("address2 ````````````````````= " + address2);
+
+      if(list1 != null && list1.size()>0){
+          Address address1 =  orderService.queryAddress1(user.getId(),address2);
+          if(address1 == null){
+              if(list1.size()< 3 ){
+                  int i = addressService.doInsert(address2);
+              }else{
+                  int i = orderService.updateAddr(user.getId(),address2);
+              }
+          }
+
+
+          /*
+          for (Address address1 : list1) {
+              System.out.println("address1 ``````````````````= " + address1);
+              if( !address2.getAddr().equals(address1.getAddr()) || !address2.getName().equals(address1.getName()) || !address2.getTel().equals(address1.getTel())){
+
+                  System.out.println("---------------1---------------");
+                  if(list1.size() < 3){
+                      System.out.println("---------------2---------------");
+
+                      int i = addressService.doInsert(address2);
+                      break;
+                  }else{
+                      System.out.println("---------------3---------------");
+                      int i = orderService.updateAddr(user.getId(),address2);
+                      break;
+
+                  }
+              }
+              System.out.println("---------------4---------------");
+              break;
+          }*/
+
+      }else{
+          System.out.println("---------------5---------------");
+          int i = addressService.doInsert(address2);
+      }
+
+
+      HashMap<String, Object> map = new HashMap<String, Object>();
 //      收件人地址address表
 
-      Address address1 = new Address();
-      address1.setAddr(address);
-      address1.setTel(tel);
-      address1.setMid(user.getId());
-      address1.setName(username);
-      int i = addressService.doInsert(address1);
-      System.out.println("address1 = " + address1.getId());
 
       String single = request.getParameter("single");
     /*  map.put("mid", user.getId());
       map.put("tot_money", money);
       map.put("aid",address1.getId());
 */
-      Orders orders = new Orders();
-      orders.setAid(address1.getId());
+
       orders.setTot_money(Double.parseDouble(money));
       orders.setMid(user.getId());
+      System.out.println("orders  ========================= = " + orders);
       int add = orderService.add(orders);
       if(add >0){
           System.out.println("添加成功");
@@ -269,9 +316,40 @@ public class OrderController {
 
 
     @RequestMapping("/commendOk")
-    private String commendOk(Comment comment){
+    private String commendOk(Comment comment,HttpSession session){
+
+        if(comment.getDescribes() == null){
+            comment.setDescribes("默认好评！");
+        }
+        Integer orderId = comment.getOrderId();
+        List<Map<String, Object>> maps = orderService.queryByOrderId(orderId.toString());
+        if(maps.size() == 1 ){
+            orderService.setSucc(orderId);
+        }
+        Member user = (Member) session.getAttribute("user");
+        comment.setMid(user.getId());
         System.out.println("comment = " + comment);
+        int i = orderService.diInsertComm(comment);
+        int cid = comment.getId();
+        int j = orderService.doUpdateOderDetail(comment.getOid(),cid);
         return "success";
+    }
+
+
+    @RequestMapping("/address_list")
+    public String address_list(HttpSession session,Map map){
+        Member user = (Member) session.getAttribute("user");
+        List<Address> list = orderService.selectAddr(user.getId());
+        map.put("list",list);
+        return "address";
+    }
+
+    @RequestMapping("/commend_list")
+    public String commend_list(Map map,HttpSession session){
+        Member user = (Member) session.getAttribute("user");
+        List<Map> list =  orderService.selectComm(user.getId());
+       map.put("list",list);
+       return "commend";
     }
 
 }

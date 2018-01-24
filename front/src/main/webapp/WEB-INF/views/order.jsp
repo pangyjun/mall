@@ -518,7 +518,6 @@
                                                         <li class="td td-status">
                                                             <div class="item-status">
                                                                 <p class="Mystatus">等待买家付款</p>
-                                                                <p class="order-info"><a href="#">取消订单</a></p>
 
                                                             </div>
                                                         </li>
@@ -708,18 +707,13 @@
                                                 <div class="order-right">
                                                     <li class="td td-amount">
                                                         <div class="item-amount">
-                                                            合计：$${map.tot_price}
+                                                            合计：$${map.tot_money}
                                                         </div>
                                                     </li>
                                                     <div class="move-right">
                                                         <li class="td td-status">
                                                             <div class="item-status">
                                                                 <p class="Mystatus">卖家已发货</p>
-                                                                <p class="order-info"><a href="orderinfo.html">订单详情</a>
-                                                                </p>
-                                                                <p class="order-info"><a href="logistics.html">查看物流</a>
-                                                                </p>
-                                                                <p class="order-info"><a href="#">延长收货</a></p>
                                                             </div>
                                                         </li>
                                                         <li class="td td-change">

@@ -9,6 +9,32 @@ public class Address {
     private Integer mid;
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Address address = (Address) o;
+
+        if (id != null ? !id.equals(address.id) : address.id != null) return false;
+        if (name != null ? !name.equals(address.name) : address.name != null) return false;
+        if (addr != null ? !addr.equals(address.addr) : address.addr != null) return false;
+        if (tel != null ? !tel.equals(address.tel) : address.tel != null) return false;
+        if (flag != null ? !flag.equals(address.flag) : address.flag != null) return false;
+        return mid != null ? mid.equals(address.mid) : address.mid == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (addr != null ? addr.hashCode() : 0);
+        result = 31 * result + (tel != null ? tel.hashCode() : 0);
+        result = 31 * result + (flag != null ? flag.hashCode() : 0);
+        result = 31 * result + (mid != null ? mid.hashCode() : 0);
+        return result;
+    }
+
+    @Override
     public String toString() {
         return "Address{" +
                 "id=" + id +

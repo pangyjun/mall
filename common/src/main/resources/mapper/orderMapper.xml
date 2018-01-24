@@ -5,7 +5,7 @@
 <mapper namespace="com.hwua.commom.dao.OrderMapper">
 
     <insert id="doInsert" parameterType="orders" useGeneratedKeys="true" keyProperty="id">
-INSERT INTO orders(mid,aid,TOT_MONEY) VALUES (#{mid},#{aid},#{tot_money});
+INSERT INTO orders(mid,TOT_MONEY,addr) VALUES (#{mid},#{tot_money},#{addr});
     </insert>
 
     <insert id="doInsertDetail" parameterType="orderDetail">
@@ -30,6 +30,10 @@ INSERT INTO orders(mid,aid,TOT_MONEY) VALUES (#{mid},#{aid},#{tot_money});
 
     <select id="queryNoPay2" resultType="map">
         SELECT * FROM order_detail ,product WHERE product.ID = order_detail.pid AND order_detail.oid =#{id}
+    </select>
+
+    <select id="query" resultType="map">
+        SELECT * FROM order_detail ,product WHERE product.ID = order_detail.pid AND order_detail.oid =#{id} AND order_detail.cid IS NULL
     </select>
     <select id="queryHavePay1" resultType="map">
         SELECT * FROM orders WHERE mid = #{arg0} AND PAY_TIME is NOT NULL AND orders.SEND_TIME IS null AND FLAG = 0
@@ -62,6 +66,45 @@ INSERT INTO orders(mid,aid,TOT_MONEY) VALUES (#{mid},#{aid},#{tot_money});
     <update id="order_confirm">
         UPDATE orders SET confirm_time = now()  WHERE id = #{arg0}
     </update>
+
+    <insert id="doInsertComm" parameterType="Comment"  useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO comment(grade, describes, create_time, pid,mid) VALUES(#{grade}, #{describes}, now(), #{pid},#{mid})
+    </insert>
+
+    <update id="doUpdateOderDetail">
+        UPDATE order_detail SET cid = #{arg1} WHERE id = #{arg0}
+    </update>
+
+    <update id="setSucc">
+        UPDATE orders SET succ = 1 WHERE id = #{arg0}
+    </update>
+
+    <select id="selectAddr" resultType="address">
+        SELECT * FROM address WHERE mid = #{arg0}
+    </select>
+
+    <select id="selectComm" resultType="map">
+       SELECT  * FROM comment,product WHERE comment.pid = product.id AND mid = #{arg0}
+    </select>
+
+    <select id="queryAddress" resultType="address">
+        SELECT * FROM address WHERE mid = #{arg0} AND  flag = 1
+    </select>
+
+    <select id="queryAddressList" resultType="address">
+        SELECT * FROM address WHERE mid = #{arg0}
+    </select>
+
+    <update id="updateAddr" >
+UPDATE address SET name=#{arg1.name},addr=#{arg1.addr},tel=#{arg1.tel},mid = #{arg1.mid},counts = 1  WHERE id =(SELECT id FROM  (select id from address WHERE mid = #{arg0} order by counts ASC LIMIT 0,1 ) temp );
+
+    </update>
+
+    <select id="queryAddress1"  resultType="address">
+        SELECT * FROM address WHERE addr = #{arg1.addr} AND tel = #{arg1.tel} AND name=#{arg1.name} AND mid = #{arg0}
+    </select>
+
+
 
 
 </mapper>
