@@ -10,24 +10,13 @@ import javax.servlet.http.HttpSession;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Set;
-
 @Component
 public class LoginInterception implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object o) throws Exception {
         HttpSession session = request.getSession();
         if(session.getAttribute("user") == null){
-            String requestURI = request.getRequestURI();
-
-            String servletPath = request.getServletPath();
-            System.out.println("servletPath = " + servletPath);
-            Map<String, String[]> parameterMap = request.getParameterMap();
-
-            Set<String> strings = parameterMap.keySet();
-            for (String s : strings) {
-                System.out.println("key  = " + s + "---- value= " + Arrays.toString(parameterMap.get(s)));
-            }
-            response.sendRedirect(request.getContextPath()+ "/login?URI="+servletPath);
+            response.sendRedirect(request.getContextPath()+ "/login.jsp");
             return false;
         }
         return true;
@@ -36,7 +25,9 @@ public class LoginInterception implements HandlerInterceptor {
 
     @Override
     public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView) throws Exception {
+
     }
+
     @Override
     public void afterCompletion(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) throws Exception {
 
