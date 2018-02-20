@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hwua.commom.dao.MemberMapper">
     <select id="queryByTel" resultType="member">
-        SELECT * FROM member WHERE TEL = #{tel}
+        SELECT * FROM member WHERE TEL = #{tel} AND flag = 0 AND valid = 0
     </select>
 
     <select id="queryUser" resultType="member">
@@ -12,7 +12,7 @@
     </select>
 
     <select id="queryByName" resultType="member">
-        SELECT * FROM member WHERE USERNAME = #{username}
+        SELECT * FROM member WHERE USERNAME = #{username}  AND flag = 0 AND valid = 0
     </select>
 
     <insert id="doUpdate" parameterType="member">
@@ -26,6 +26,23 @@
     <update id="updatePass">
         UPDATE member SET PASSWORD = #{arg1} WHERE USERNAME = #{arg0}
     </update>
+
+    <select id="queryAll" resultType="member">
+        SELECT  * FROM  member WHERE valid = 0
+    </select>
+
+    <update id="updateMemberFlag">
+        UPDATE member SET flag = #{arg1} WHERE ID = #{arg0}
+    </update>
+
+    <update id="updateMemberdel">
+                UPDATE member SET valid = 1 WHERE ID = #{arg0}
+
+    </update>
+
+    <select id="queryByid" resultType="map">
+        SELECT * FROM member WHERE ID = #{arg0}
+    </select>
 
 
 </mapper>

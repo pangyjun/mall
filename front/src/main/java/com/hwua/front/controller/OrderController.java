@@ -156,28 +156,6 @@ public class OrderController {
           }
 
 
-          /*
-          for (Address address1 : list1) {
-              System.out.println("address1 ``````````````````= " + address1);
-              if( !address2.getAddr().equals(address1.getAddr()) || !address2.getName().equals(address1.getName()) || !address2.getTel().equals(address1.getTel())){
-
-                  System.out.println("---------------1---------------");
-                  if(list1.size() < 3){
-                      System.out.println("---------------2---------------");
-
-                      int i = addressService.doInsert(address2);
-                      break;
-                  }else{
-                      System.out.println("---------------3---------------");
-                      int i = orderService.updateAddr(user.getId(),address2);
-                      break;
-
-                  }
-              }
-              System.out.println("---------------4---------------");
-              break;
-          }*/
-
       }else{
           System.out.println("---------------5---------------");
           int i = addressService.doInsert(address2);

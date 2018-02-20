@@ -1,13 +1,16 @@
 package com.hwua.mall.service.impl;
 
 import com.hwua.commom.dao.UserMapper;
+import com.hwua.commom.po.Orders;
 import com.hwua.commom.po.User;
 import com.hwua.mall.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service("userService")
@@ -37,4 +40,32 @@ public class UserServiceImpl implements UserService{
 
         return map;
     }
+
+    @Override
+    public List<Map> queryAll() {
+        List<Map> list = userMapper.queryAll();
+        for (Map m1:list) {
+            List<Map> list1 = userMapper.queryuserofRole(m1.get("dbid"));
+            m1.put("role","");
+            for (Map m2 : list1) {
+                m1.put("role",m1.get("role")+""+m2.get("roleName")+",");
+
+            }
+            String user = m1.get("role").toString();
+            if(user.contains(",")){
+                int i = user.lastIndexOf(",");
+                System.out.println("i = " + i);
+                String substring = user.substring(0,i);
+                m1.put("role",substring);
+            }
+        }
+        return list;
+    }
+
+    @Override
+    public List<Orders> getmsg() {
+        return userMapper.getmsg();
+    }
+
+
 }

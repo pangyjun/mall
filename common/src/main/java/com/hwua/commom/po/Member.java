@@ -6,6 +6,15 @@ public class Member {
     private String password;
     private String gender;
     private String tel;
+    private String flag;
+
+    public String getFlag() {
+        return flag;
+    }
+
+    public void setFlag(String flag) {
+        this.flag = flag;
+    }
 
     @Override
     public String toString() {

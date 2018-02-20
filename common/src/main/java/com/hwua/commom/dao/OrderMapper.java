@@ -63,4 +63,33 @@ public interface OrderMapper {
     int updateAddr(Integer id, Address address);
 
     Address queryAddress1(Integer mid,Address address2);
+
+    List<Map> queryAllComm();
+
+    int comment_del(Integer commId);
+
+    int serDataDel();
+
+    int setF();
+
+    Map queryComm(String id);
+
+    int setCommentF(String id, int i);
+
+    List<Map<String,Object>> querySuccess11();
+
+    List<Map<String,Object>> queryNoConfirm11();
+
+    List<Map<String,Object>> querySend11();
+
+    List<Map<String,Object>> queryHavePay11();
+
+    List<Map<String,Object>> queryNoPay11();
+
+    List<Map<String,Object>> queryqueryHavePay111();
+
+    int updateOrderSendTime(Integer id);
+
+    int setRemind();
+
 }

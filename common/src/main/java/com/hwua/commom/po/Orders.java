@@ -13,6 +13,15 @@ public class Orders {
     private Date confirm_time;
     private Date send_time;
     private String addr;
+    private Integer remind;
+
+    public Integer getRemind() {
+        return remind;
+    }
+
+    public void setRemind(Integer remind) {
+        this.remind = remind;
+    }
 
     public String getAddr() {
         return addr;

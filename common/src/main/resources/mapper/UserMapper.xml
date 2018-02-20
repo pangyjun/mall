@@ -4,13 +4,22 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hwua.commom.dao.UserMapper">
     <select id="queryByName" parameterType="string" resultType="map">
-        SELECT * FROM user WHERE userName = #{userName}
+        SELECT * FROM user WHERE userName = #{userName} AND flag = 0 AND valid = 1
     </select>
 
     <select id="queryUser" resultType="user">
-        SELECT * FROM user WHERE userName = #{arg0} AND password = #{arg1}
+        SELECT * FROM user WHERE userName = #{arg0} AND password = #{arg1} AND flag = 0 AND valid = 1
     </select>
 
+    <select id="queryAll" resultType="map">
+        SELECT  * FROM  user
+    </select>
 
+    <select id="queryuserofRole" resultType="map">
+SELECT roleName FROM role,user,user_role WHERE role.dbid = user_role.roleId AND user.dbid=user_role.userId AND userId = #{arg0}</select>
+
+<select id="getmsg" resultType="orders">
+    SELECT * FROM orders WHERE remind != 0
+</select>
 
 </mapper>

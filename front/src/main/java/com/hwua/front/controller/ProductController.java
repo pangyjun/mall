@@ -132,8 +132,6 @@ public class ProductController {
         if(user != null){
             String id = user.getId().toString();
             for (Cookie c : cookies) {
-
-
                 if(c.getName().contains("-") && c.getName().startsWith(id) ){
                     i++;
                     if(i<=8){

@@ -37,4 +37,10 @@ public interface ProductMapper {
     List<Product> query(HashMap<String, Object> map);
 
     int queryCount(HashMap<String, Object> map);
+
+    int doUpdateStop(int i, Integer id);
+
+    int doInsertProduct(Product product);
+
+    int product_del(Integer id);
 }

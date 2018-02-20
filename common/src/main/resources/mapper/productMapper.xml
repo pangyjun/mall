@@ -9,7 +9,7 @@
     </select>
 
     <select id="queryAll" resultType="product">
-        SELECT * FROM product
+        SELECT * FROM product WHERE status = 1
     </select>
 
     <select id="queryCupCake" resultType="product">
@@ -52,11 +52,11 @@ SELECT * FROM product  LEFT JOIN comment  ON product.id  = comment.pid GROUP BY 
     </select>
 
     <select id="queryComm" resultType="map">
-        SELECT * FROM product,comment,member WHERE product.id = comment.pid AND pid = #{arg0} AND member.ID = comment.mid
+        SELECT * FROM product,comment,member WHERE product.id = comment.pid AND pid = #{arg0} AND member.ID = comment.mid AND del = 1
     </select>
 
 <select id="querySame" resultType="product">
-    SELECT * FROM product
+    SELECT * FROM product WHERE status = 1
 </select>
 
 
@@ -80,7 +80,7 @@ SELECT * FROM product  LEFT JOIN comment  ON product.id  = comment.pid GROUP BY 
     </select>
 
     <select id="queryCount" parameterType="map" resultType="int">
-        SELECT COUNT(id) FROM product  WHERE 1=1
+        SELECT COUNT(id) FROM product  WHERE 1=1 AND useable = 1 AND status = 1
         <if test="id1 != null &amp; id2 != null &amp; id3 != null ">
             AND ID IN (SELECT pid FROM RELATION_1_2_3 WHERE  ID1=#{id1} AND ID2= #{id2} AND ID3=#{id3} )
         </if>
@@ -97,4 +97,15 @@ SELECT * FROM product  LEFT JOIN comment  ON product.id  = comment.pid GROUP BY 
 
     </select>
 
+    <update id="doUpdateStop">
+        UPDATE product SET  useable = #{arg0} WHERE id = #{arg1}
+    </update>
+
+    <insert id="doInsertProduct" parameterType="product" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO product(name, comm, price, stock, time, imgs, pre_price) VALUES (#{name}, #{comm}, #{price}, #{stock}, now(), #{imgs}, #{pre_price})
+    </insert>
+
+    <update id="product_del" >
+        UPDATE product SET status = 0 WHERE id  = #{arg0}
+    </update>
 </mapper>

@@ -27,6 +27,9 @@ INSERT INTO orders(mid,TOT_MONEY,addr) VALUES (#{mid},#{tot_money},#{addr});
     <select id="queryNoPay1" resultType="map">
         SELECT * FROM orders WHERE mid = #{id} AND PAY_TIME is NULL AND FLAG = 0
     </select>
+    <select id="queryNoPay11" resultType="map">
+        SELECT * FROM orders WHERE  PAY_TIME is NULL AND FLAG = 0
+    </select>
 
     <select id="queryNoPay2" resultType="map">
         SELECT * FROM order_detail ,product WHERE product.ID = order_detail.pid AND order_detail.oid =#{id}
@@ -38,17 +41,34 @@ INSERT INTO orders(mid,TOT_MONEY,addr) VALUES (#{mid},#{tot_money},#{addr});
     <select id="queryHavePay1" resultType="map">
         SELECT * FROM orders WHERE mid = #{arg0} AND PAY_TIME is NOT NULL AND orders.SEND_TIME IS null AND FLAG = 0
     </select>
+    <select id="queryHavePay11" resultType="map">
+        SELECT * FROM orders WHERE PAY_TIME is NOT NULL AND orders.SEND_TIME IS null AND FLAG = 0
+    </select>
+
+    <select id="queryqueryHavePay111" resultType="map">
+        SELECT * FROM orders WHERE PAY_TIME is NOT NULL AND orders.SEND_TIME IS null AND FLAG = 0 AND remind != 0
+    </select>
 
     <select id="querySend1" resultType="map">
         SELECT * FROM orders WHERE mid = #{arg0} AND CONFIRM_TIME is NULL AND orders.SEND_TIME IS NOT null AND FLAG = 0
+    </select>
+    <select id="querySend11" resultType="map">
+        SELECT * FROM orders WHERE CONFIRM_TIME is NULL AND orders.SEND_TIME IS NOT null AND FLAG = 0
     </select>
 
     <select id="queryNoConfirm1" resultType="map">
        SELECT * FROM orders WHERE mid = #{arg0} AND CONFIRM_TIME is NOT NULL AND orders.succ = 0 AND FLAG = 0
     </select>
+    <select id="queryNoConfirm11" resultType="map">
+       SELECT * FROM orders WHERE CONFIRM_TIME is NOT NULL AND orders.succ = 0 AND FLAG = 0
+    </select>
 
     <select id="querySuccess1" resultType="map">
        SELECT * FROM orders WHERE mid = #{arg0} AND succ = 1  AND FLAG = 0
+    </select>
+
+    <select id="querySuccess11" resultType="map">
+       SELECT * FROM orders WHERE  succ = 1  AND FLAG = 0
     </select>
 
     <update id="delO2">
@@ -84,7 +104,7 @@ INSERT INTO orders(mid,TOT_MONEY,addr) VALUES (#{mid},#{tot_money},#{addr});
     </select>
 
     <select id="selectComm" resultType="map">
-       SELECT  * FROM comment,product WHERE comment.pid = product.id AND mid = #{arg0}
+       SELECT  * FROM comment,product WHERE comment.pid = product.id AND mid = #{arg0} AND del = 1
     </select>
 
     <select id="queryAddress" resultType="address">
@@ -105,6 +125,35 @@ UPDATE address SET name=#{arg1.name},addr=#{arg1.addr},tel=#{arg1.tel},mid = #{a
     </select>
 
 
+    <select id="queryAllComm" resultType="map">
+        SELECT *,product.id productId,product.name pname , comment.id commId FROM member,comment,product WHERE member.ID= comment.mid AND product.id = comment.pid AND del = 1
+    </select>
 
+    <update id="comment_del">
+        UPDATE comment SET del = 0 WHERE id = #{arg0}
+    </update>
+
+    <update id="setCommentF">
+         UPDATE comment SET f = #{arg1} WHERE id = #{arg0} AND del = 1
+    </update>
+
+    <update id="setF">
+        UPDATE comment SET f = 0 WHERE  del = 1
+    </update>
+    <update id="serDataDel">
+        UPDATE comment SET del = 0 WHERE f = 1
+    </update>
+
+    <select id="queryComm" resultType="map">
+        select * from comment WHERE id = #{arg0}
+    </select>
+
+    <update id="updateOrderSendTime">
+        UPDATE orders SET send_time = now() WHERE id = #{arg0}
+    </update>
+
+    <update id="setRemind">
+        UPDATE orders SET remind = 0
+    </update>
 
 </mapper>

@@ -49,7 +49,7 @@
                         console.log(result);
 //                        alert("success:"+JSON.stringify(result));
                         if (result.error){
-                            alert(result.error)
+                            alert("登录失败！")
                             $("input[name = 'tell']").val(""),
                                 $("input[name = 'password1']").val("")
 

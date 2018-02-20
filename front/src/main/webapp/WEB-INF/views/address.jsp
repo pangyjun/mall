@@ -57,7 +57,13 @@
                     title:"编辑",
                     skin: 'layui-layer-rim', //加上边框
                     area: ['420px', '240px'], //宽高
-                    content: '<form action="${ctx}/edit" method="post">&nbsp;&nbsp;收件人姓名：<input name="name" value="'+name+'"/><br>&nbsp;&nbsp;收件人电话：<input name="tel" value="'+tel+'"/><br>&nbsp;&nbsp;收件人地址：<input name="addr" value="'+addr+'" /><br><input name="id" type="hidden" value="'+id+'"/>&nbsp;&nbsp;是否设置为默认地址<input type="radio" name="flag" value="1"/> 是<input type="radio" name="flag" checked value="0"/>否<br><br>&nbsp;&nbsp;<input type="submit" value="提交"/></form>'
+                    content: '<form action="${ctx}/edit" method="post">'+
+                    '&nbsp;&nbsp;收件人姓名：<input name="name" value="'+name+'"/><br>'+
+                    '&nbsp;&nbsp;收件人电话：<input name="tel" value="'+tel+'"/><br>'+
+                    '&nbsp;&nbsp;收件人地址：<input name="addr" value="'+addr+'" /><br>'+
+                    '<input name="id" type="hidden" value="'+id+'"/>&nbsp;&nbsp;'+
+                    '是否设置为默认地址<input type="radio" name="flag" value="1"/> 是<input type="radio" name="flag" checked value="0"/>否<br><br>&nbsp;&nbsp;<input type="submit" value="提交"/></form>'
+
                 });
                 /*layer.open({
                   title:"编辑",

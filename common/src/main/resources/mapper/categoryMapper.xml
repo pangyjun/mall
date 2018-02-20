@@ -14,6 +14,27 @@
     <select id="queryC3" resultType="map">
         SELECT * FROM category3 WHERE ID IN (SELECT ID3 FROM relation_1_2_3 WHERE ID1 = #{arg0} AND ID2 = #{arg1})
     </select>
+    <insert id="addc1" parameterType="map" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO category1 (NAME) VALUES (#{name})
+    </insert>
+
+    <insert id="addc2" parameterType="map" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO category2 (NAME) VALUES (#{name})
+    </insert>
+    <insert id="add_relation" parameterType="map">
+        INSERT INTO relation_1_2_3(ID1) VALUES (#{id})
+    </insert>
+
+    <insert id="add_relation1" parameterType="map">
+        INSERT INTO relation_1_2_3(ID1,ID2) VALUES (#{c1},#{id})
+    </insert>
+    <select id="query" resultType="map">
+        SELECT * FROM category1 WHERE NAME = #{arg0}
+    </select>
+
+    <select id="queryc2" resultType="map">
+       SELECT * FROM category2 WHERE NAME = #{arg0}
+    </select>
 
 
 </mapper>
